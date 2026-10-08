@@ -27,8 +27,6 @@ jobs:
           node-version: 22
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Build site
         run: |
           npm ci
