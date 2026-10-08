@@ -1,0 +1,14 @@
+{
+  "name": "doyen-website-developer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "audit": "node audit.mjs",
+    "start": "npx --yes serve dist"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

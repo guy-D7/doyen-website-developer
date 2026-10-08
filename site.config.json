@@ -1,0 +1,29 @@
+{
+  "_readme": "Edit this file, then run `npm run build`. Empty values are never invented: they render as visible placeholders (and a build warning) until you fill them in.",
+  "siteName": "Doyen Website Developer",
+  "shortName": "Doyen",
+  "siteUrl": "",
+  "description": "Doyen Website Developer provides website development and digital presence services for startups and small businesses in Jamshedpur, Bangalore and beyond.",
+  "email": "",
+  "phone": "",
+  "formAction": "",
+  "locations": [
+    { "city": "Jamshedpur", "region": "Jharkhand", "country": "India" },
+    { "city": "Bangalore", "region": "Karnataka", "country": "India" }
+  ],
+  "socialProfiles": [],
+  "founder": { "name": "Doyen Deb", "jobTitle": "Founder" },
+  "platforms": [
+    "Hand-built HTML, CSS and JavaScript for fast, lightweight sites",
+    "Content management systems where clients need to edit content themselves",
+    "E-commerce platforms for online stores"
+  ],
+  "budgetRanges": [
+    "Not sure yet",
+    "Under ₹25,000",
+    "₹25,000 – ₹75,000",
+    "₹75,000 – ₹1,50,000",
+    "Above ₹1,50,000"
+  ],
+  "themeColor": "#1f2328"
+}
