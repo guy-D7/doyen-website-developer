@@ -2,13 +2,16 @@
 // Run: npm run build  ->  outputs to ./dist
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { services, audiences, why, process as steps, faqs, futureTopics, portfolioCategories } from './content.mjs';
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, 'dist');
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'site.config.json'), 'utf8'));
 const projects = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/projects.json'), 'utf8'));
 const warnings = [];
+const basePath = (process.env.SITE_BASE_PATH || '').replace(/^\/+|\/+$/g, '');
+const basePrefix = basePath ? `/${basePath}` : '';
 
 // ---------- config handling ----------
 const PLACEHOLDER_URL = 'https://YOUR-DOMAIN.com';
@@ -669,7 +672,8 @@ const write = (rel, data) => {
 
 for (const p of pages) {
   const rel = p.file || (p.path === '/' ? 'index.html' : path.join(p.path, 'index.html'));
-  write(rel, layout(p));
+  const html = layout(p).replace(/\b(href|src|action)="\/(?!\/)/g, `$1="${basePrefix}/`);
+  write(rel, html);
 }
 
 // static assets
@@ -711,7 +715,7 @@ ${indexable.map((p) => `  <url><loc>${url(p.path)}</loc><lastmod>${today}</lastm
 // manifest
 write(
   'site.webmanifest',
-  JSON.stringify({ name: NAME, short_name: cfg.shortName, description: cfg.description, start_url: '/', display: 'browser', background_color: '#faf7f0', theme_color: cfg.themeColor, icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }] }, null, 2)
+  JSON.stringify({ name: NAME, short_name: cfg.shortName, description: cfg.description, start_url: `${basePrefix}/`, display: 'browser', background_color: '#faf7f0', theme_color: cfg.themeColor, icons: [{ src: `${basePrefix}/icon-192.png`, sizes: '192x192', type: 'image/png' }, { src: `${basePrefix}/icon-512.png`, sizes: '512x512', type: 'image/png' }] }, null, 2)
 );
 
 // _headers (Netlify / Cloudflare Pages style caching + security basics)

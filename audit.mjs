@@ -1,7 +1,8 @@
 // Automated audit of ./dist against the brief. Run after `npm run build`.
 import fs from 'node:fs';
 import path from 'node:path';
-const DIST = path.join(path.dirname(new URL(import.meta.url).pathname), 'dist');
+import { fileURLToPath } from 'node:url';
+const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
 const files = [];
 (function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); fs.statSync(p).isDirectory() ? walk(p) : files.push(p); } })(DIST);
 const html = files.filter((f) => f.endsWith('.html'));
@@ -9,6 +10,8 @@ let fails = 0, passes = 0;
 const ok = (c, m) => { if (c) passes++; else { fails++; console.log('FAIL:', m); } };
 const get = (s, re) => (s.match(re) || [])[1];
 const titles = new Set(), descs = new Set();
+const basePrefix = (process.env.SITE_BASE_PATH || '').replace(/^\/+|\/+$/g, '');
+const basePath = basePrefix ? `/${basePrefix}` : '';
 const route = (f) => '/' + path.relative(DIST, f).replace(/index\.html$/, '').replace(/\\/g, '/');
 const exists = (u) => { const p = u.split('#')[0]; if (!p || p === '/') return true; const c = [path.join(DIST, p), path.join(DIST, p, 'index.html')]; return c.some((x) => fs.existsSync(x) && fs.statSync(x).isFile()); };
 const sitemap = fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8');
@@ -46,7 +49,10 @@ for (const f of html) {
     if (!noindex && r !== '/') ok(types.includes('BreadcrumbList'), `${r}: breadcrumb schema`);
   } catch (e) { ok(false, `${r}: JSON-LD invalid ${e.message}`); }
   // links
-  for (const m of s.matchAll(/href="(\/[^"]*)"/g)) ok(exists(m[1]) || m[1] === '/', `${r}: broken link ${m[1]}`);
+  for (const m of s.matchAll(/href="(\/[^"]*)"/g)) {
+    const link = basePath && (m[1] === `${basePath}/` || m[1].startsWith(`${basePath}/`)) ? m[1].slice(basePath.length) : m[1];
+    ok(exists(link) || link === '/', `${r}: broken link ${m[1]}`);
+  }
   // sitemap consistency
   const inMap = sitemap.includes(`<loc>`) && new RegExp(`<loc>[^<]*${r === '/' ? '/' : r.replace(/[/.]/g, '\\$&')}</loc>`).test(sitemap);
   if (r !== '/404.html') ok(noindex ? !inMap : inMap, `${r}: sitemap/noindex mismatch`);

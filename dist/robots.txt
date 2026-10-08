@@ -13,4 +13,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
+Sitemap: https://guy-d7.github.io/doyen-website-developer/sitemap.xml
