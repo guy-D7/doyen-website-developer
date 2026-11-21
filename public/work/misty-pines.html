@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misty Pines Stays — Cabins in the Himalayan foothills</title>
+<meta name="description" content="Hospitality website by Doyen Website Developer: live price calculator, book-direct perk and WhatsApp enquiry.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+ html{scroll-behavior:smooth}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+ .cabin.on{outline:3px solid #1F3B2D;outline-offset:3px}
+ .kb{animation:kb 20s ease-in-out infinite alternate}@keyframes kb{to{transform:scale(1.12) translate(-2%,-2%)}}
+ .mist{position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,#F6F2EA)}
+</style>
+<link rel="stylesheet" href="/assets/css/misty-pines.css">
+</head>
+<body class="bg-paper text-forest">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want direct bookings like this? →</a></div>
+<header class="absolute inset-x-0 top-auto z-30">
+ <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between text-white">
+  <a class="font-serif text-3xl font-semibold" href="#">Misty Pines</a>
+  <nav class="hidden md:flex gap-8 text-sm"><a href="#cabins">Cabins</a><a href="#exp">Experiences</a><a href="#book">Book direct</a></nav>
+ </div>
+</header>
+<section class="relative h-[88vh] min-h-[560px] overflow-hidden bg-forest">
+ <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1800&h=1100&fit=crop" class="kb absolute inset-0 w-full h-full object-cover opacity-80" alt="Wooden cabin among pine trees" onerror="this.style.opacity=0">
+ <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent"></div><div class="mist"></div>
+ <div class="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center text-white">
+  <p class="tracking-[.3em] text-xs mb-4">HIMALAYAN FOOTHILLS · HIMACHAL PRADESH</p>
+  <h1 class="font-serif text-6xl md:text-8xl font-semibold leading-[.9] mb-6 max-w-3xl">Wake up above the clouds.</h1>
+  <p class="text-lg max-w-lg text-white/90 mb-8">Three timber cabins, tea gardens below, Dhauladhar peaks ahead. Fast Wi-Fi for workations.</p>
+  <a href="#book" class="self-start bg-white text-forest px-7 py-4 rounded-full font-semibold hover:bg-paper">Check prices →</a>
+ </div>
+</section>
+
+<!-- booking bar -->
+<section id="book" class="relative z-20 -mt-24 max-w-6xl mx-auto px-6">
+ <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-8">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-6"><h2 class="font-serif text-3xl font-semibold">Plan your stay</h2><span class="bg-moss/15 text-forest text-xs font-bold px-3 py-1.5 rounded-full">🎁 Book direct: 10% off + free bonfire night</span></div>
+  <div class="grid md:grid-cols-4 gap-4 items-end">
+   <label class="text-xs font-semibold">Check-in<input type="date" id="cin" class="mt-1 w-full border rounded-xl p-3 text-sm"></label>
+   <label class="text-xs font-semibold">Check-out<input type="date" id="cout" class="mt-1 w-full border rounded-xl p-3 text-sm"></label>
+   <label class="text-xs font-semibold">Guests<select id="gst" class="mt-1 w-full border rounded-xl p-3 text-sm"></select></label>
+   <div class="bg-paper rounded-xl p-3"><p class="text-xs">Your direct price</p><p class="font-serif text-3xl font-bold" id="total">—</p><p class="text-xs text-moss" id="save"></p></div>
+  </div>
+  <p class="text-xs text-forest/60 mt-3" id="nights"></p>
+ </div>
+</section>
+
+<section id="cabins" class="max-w-7xl mx-auto px-6 py-20">
+ <h2 class="font-serif text-5xl font-semibold mb-2">Choose your cabin</h2><p class="text-forest/60 mb-10">Tap a cabin — the price above updates instantly.</p>
+ <div class="grid md:grid-cols-3 gap-6" id="cabinGrid"></div>
+</section>
+
+<section id="exp" class="bg-forest text-paper py-20">
+ <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+  <div><p class="text-4xl mb-3">🥾</p><h3 class="font-serif text-2xl font-semibold">Guided treks</h3><p class="text-paper/70 text-sm">Triund and village trails with local guides.</p></div>
+  <div><p class="text-4xl mb-3">🍵</p><h3 class="font-serif text-2xl font-semibold">Tea estate walks</h3><p class="text-paper/70 text-sm">Kangra tea, plucked and brewed on site.</p></div>
+  <div><p class="text-4xl mb-3">🔥</p><h3 class="font-serif text-2xl font-semibold">Bonfire nights</h3><p class="text-paper/70 text-sm">Free for direct bookings.</p></div>
+  <div><p class="text-4xl mb-3">💻</p><h3 class="font-serif text-2xl font-semibold">Workation ready</h3><p class="text-paper/70 text-sm">Fibre Wi-Fi, desks and power backup.</p></div>
+ </div>
+</section>
+
+<section class="max-w-3xl mx-auto px-6 py-20 text-center">
+ <h2 class="font-serif text-5xl font-semibold mb-4">Questions? Ask the host.</h2>
+ <p class="text-forest/60 mb-8">We reply on WhatsApp within the hour, 8am–10pm.</p>
+ <div class="flex flex-col sm:flex-row gap-3 justify-center"><a id="wa" target="_blank" rel="noopener" class="bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold">Enquire on WhatsApp</a><button id="reserve" class="bg-forest text-paper px-7 py-4 rounded-full font-semibold">Reserve now</button></div>
+</section>
+<footer class="border-t border-forest/10 text-center text-xs py-8 text-forest/50">© Misty Pines Stays — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-32 bg-forest text-paper px-5 py-3 rounded-full transition-transform duration-500 text-sm z-50"></div>
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const $=s=>document.querySelector(s);
+const C=[{n:'Pine Loft',g:2,r:5400,img:'https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&h=600&fit=crop',f:['Valley view','Loft bed','Fireplace']},
+ {n:'Cedar Family Cabin',g:4,r:8200,img:'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800&h=600&fit=crop',f:['2 bedrooms','Kitchenette','Deck']},
+ {n:'Summit A-Frame',g:3,r:7100,img:'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?w=800&h=600&fit=crop',f:['Glass gable','Stargazing','Bathtub']}];
+let sel=0;
+$('#gst').innerHTML=[1,2,3,4].map(n=>`<option ${n===2?'selected':''}>${n}</option>`).join('');
+$('#cabinGrid').innerHTML=C.map((c,i)=>`<button class="cabin text-left bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition ${i?'':'on'}" data-i="${i}"><div class="aspect-[4/3] bg-moss/30 overflow-hidden"><img src="${c.img}" class="w-full h-full object-cover hover:scale-105 transition duration-700" alt="${c.n}" onerror="this.style.opacity=0"></div><div class="p-6"><div class="flex justify-between items-baseline"><h3 class="font-serif text-2xl font-semibold">${c.n}</h3><span class="text-sm">₹${c.r.toLocaleString('en-IN')}<span class="text-forest/50">/night</span></span></div><p class="text-xs text-forest/60 mb-3">Up to ${c.g} guests</p><div class="flex flex-wrap gap-2">${c.f.map(x=>`<span class="text-xs bg-paper px-2.5 py-1 rounded-full">${x}</span>`).join('')}</div></div></button>`).join('');
+document.querySelectorAll('.cabin').forEach(b=>b.onclick=()=>{document.querySelectorAll('.cabin').forEach(x=>x.classList.remove('on'));b.classList.add('on');sel=+b.dataset.i;calc();document.getElementById('book').scrollIntoView({behavior:'smooth',block:'center'})});
+// local date (toISOString is UTC: in India before 5:30am it returned yesterday)
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;const t=new Date();t.setDate(t.getDate()+7);const o=new Date(t);o.setDate(o.getDate()+2);
+$('#cin').value=iso(t);$('#cout').value=iso(o);$('#cin').min=iso(new Date());
+function syncOut(){const a=new Date($('#cin').value+'T00:00');if(isNaN(a))return;a.setDate(a.getDate()+1);$('#cout').min=iso(a);if($('#cout').value<iso(a))$('#cout').value=iso(a)}syncOut();$('#cin').addEventListener('change',syncOut);
+function calc(){const a=new Date($('#cin').value),b=new Date($('#cout').value);const n=Math.round((b-a)/864e5);const c=C[sel];const g=+$('#gst').value;
+ if(!(n>0)){$('#total').textContent='—';$('#nights').textContent='Pick a check-out after check-in.';$('#save').textContent='';return}
+ if(g>c.g){$('#nights').textContent=`${c.n} sleeps ${c.g} — try the Cedar Family Cabin.`;}
+ else $('#nights').textContent=`${c.n} · ${n} night${n>1?'s':''} · ${g} guest${g>1?'s':''}`;
+ const full=c.r*n, direct=Math.round(full*.9);$('#total').textContent='₹'+direct.toLocaleString('en-IN');$('#save').textContent=`You save ₹${(full-direct).toLocaleString('en-IN')} vs OTA price`;
+ $('#total').animate([{transform:'scale(1.1)'},{transform:'scale(1)'}],{duration:300});
+ $('#wa').href='https://wa.me/910000000000?text='+encodeURIComponent(`Hi Misty Pines! Is ${c.n} available ${$('#cin').value} to ${$('#cout').value} for ${g} guests?`);}
+['cin','cout','gst'].forEach(id=>$('#'+id).addEventListener('change',calc));
+$('#reserve').onclick=()=>{const t=$('#toast');const g=+$('#gst').value,c=C[sel];t.textContent=g>c.g?`${c.n} sleeps ${c.g} — pick a bigger cabin first`:'✓ Showcase build: secure checkout would open with '+$('#total').textContent;t.style.transform='translate(-50%,0)';setTimeout(()=>t.style.transform='translate(-50%,8rem)',2600)};
+calc();
+</script>
+</body>
+</html>

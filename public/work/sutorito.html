@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SUTORĪTO — ストリート | Japanese Streetwear, Made for India</title>
+<meta name="robots" content="noindex, follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --bg-2:#111115;
+    --ink:#f5f1ea;
+    --ink-dim:#9a9a9a;
+    --red:#e63946;
+    --red-deep:#8b0000;
+    --gold:#d4a574;
+    --neon:#ff2d55;
+    --grid:rgba(255,255,255,0.04);
+    --ease:cubic-bezier(.77,0,.175,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .ribbon{position:relative;z-index:60;background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+  body:not(.preview) nav{top:35px;transition:top .2s,padding .4s var(--ease)}
+  body:not(.preview) nav.scrolled{top:0}
+  /* Noise overlay */
+  .noise{
+    position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.06;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:1.5rem 3rem;
+    display:flex;justify-content:space-between;align-items:center;
+    backdrop-filter:blur(12px);
+    background:rgba(10,10,12,.6);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    transition:padding .4s var(--ease);
+  }
+  nav.scrolled{padding:.8rem 3rem}
+  .logo{
+    font-family:'Shippori Mincho',serif;
+    font-weight:800;font-size:1.4rem;letter-spacing:.1em;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  .logo-mark{
+    width:36px;height:36px;border:1.5px solid var(--ink);
+    display:grid;place-items:center;font-size:.7rem;
+    position:relative;
+  }
+  .logo-mark::before{
+    content:'';position:absolute;inset:3px;border:1px solid var(--red);
+  }
+  .nav-links{display:flex;gap:2.2rem;list-style:none;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase}
+  .nav-links a{position:relative;padding:.3rem 0;transition:color .3s}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--red);
+    transition:width .4s var(--ease);
+  }
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{
+    display:flex;gap:.8rem;align-items:center;
+    border:1px solid var(--ink);padding:.6rem 1.2rem;font-size:.8rem;
+    letter-spacing:.15em;text-transform:uppercase;
+    transition:all .3s;
+  }
+  .nav-cta:hover{background:var(--red);border-color:var(--red)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;position:relative;
+    display:grid;grid-template-columns:1fr 1fr;
+    align-items:center;padding:0 3rem;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(ellipse at 70% 50%,rgba(230,57,70,.15),transparent 60%),
+      radial-gradient(ellipse at 20% 80%,rgba(139,0,0,.2),transparent 50%);
+  }
+  .hero-grid{
+    position:absolute;inset:0;z-index:1;
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+  }
+  .hero-kanji{
+    position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+    font-family:'Noto Sans JP',sans-serif;font-weight:900;
+    font-size:clamp(18rem,28vw,32rem);
+    color:transparent;-webkit-text-stroke:1px rgba(230,57,70,.25);
+    line-height:.9;z-index:2;pointer-events:none;
+    writing-mode:vertical-rl;
+  }
+  .hero-content{position:relative;z-index:3;padding:2rem 0}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--red);margin-bottom:2rem;
+  }
+  .hero-tag::before{content:'';width:40px;height:1px;background:var(--red)}
+  .hero-title{
+    font-family:'Shippori Mincho',serif;
+    font-size:clamp(3rem,6.5vw,6rem);
+    line-height:.95;font-weight:800;
+    margin-bottom:2rem;
+  }
+  .hero-title .line{display:block;overflow:hidden}
+  .hero-title .line span{display:inline-block;transform:translateY(110%);animation:rise 1.2s var(--ease) forwards}
+  .hero-title .line:nth-child(2) span{animation-delay:.15s}
+  .hero-title .line:nth-child(3) span{animation-delay:.3s}
+  .hero-title em{font-style:normal;color:var(--red);font-family:'Noto Sans JP',sans-serif}
+  @keyframes rise{to{transform:translateY(0)}}
+  .hero-sub{
+    font-size:1.05rem;color:var(--ink-dim);max-width:480px;
+    line-height:1.6;margin-bottom:2.5rem;
+    opacity:0;animation:fadeUp 1s var(--ease) .6s forwards;
+  }
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+  .hero-sub{transform:translateY(20px)}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp 1s var(--ease) .8s forwards;transform:translateY(20px)}
+  .btn{
+    padding:1rem 2rem;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;
+    border:1px solid var(--ink);background:transparent;color:var(--ink);
+    position:relative;overflow:hidden;
+    transition:color .4s;
+  }
+  .btn::before{
+    content:'';position:absolute;inset:0;background:var(--red);
+    transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1;
+  }
+  .btn:hover::before{transform:translateY(0)}
+  .btn:hover{border-color:var(--red)}
+  .btn-primary{background:var(--ink);color:var(--bg)}
+  .btn-primary::before{background:var(--red)}
+  .btn-primary:hover{color:var(--ink)}
+
+  .hero-visual{
+    position:relative;z-index:3;height:100%;
+    display:grid;place-items:center;
+  }
+  .hero-img-wrap{
+    position:relative;width:100%;height:80vh;max-height:720px;
+    overflow:hidden;
+    clip-path:polygon(8% 0,100% 0,100% 92%,92% 100%,0 100%,0 8%);
+  }
+  .hero-img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(.3) contrast(1.1);
+    transform:scale(1.1);
+    transition:transform 8s var(--ease);
+  }
+  .hero-img-wrap:hover .hero-img{transform:scale(1)}
+  .hero-img-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 40%,rgba(10,10,12,.8));
+  }
+  .hero-stamp{
+    position:absolute;bottom:2rem;left:2rem;
+    font-family:'Noto Sans JP',sans-serif;font-weight:900;
+    font-size:.75rem;letter-spacing:.3em;
+    color:var(--red);
+    border:1px solid var(--red);padding:.5rem 1rem;
+    background:rgba(10,10,12,.6);backdrop-filter:blur(6px);
+  }
+
+  .scroll-indicator{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+    font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-dim);z-index:5;
+    display:flex;flex-direction:column;align-items:center;gap:.8rem;
+  }
+  .scroll-line{width:1px;height:50px;background:linear-gradient(180deg,var(--red),transparent);animation:scrollPulse 2s infinite}
+  @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* MARQUEE */
+  .marquee{
+    padding:1.5rem 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);
+    overflow:hidden;white-space:nowrap;
+    background:var(--bg-2);
+  }
+  .marquee-track{display:inline-flex;gap:3rem;animation:marquee 30s linear infinite;font-family:'Shippori Mincho',serif;font-size:1.4rem}
+  .marquee-track span{display:inline-flex;align-items:center;gap:3rem}
+  .marquee-track span::after{content:'✦';color:var(--red);font-size:.8rem}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* SECTIONS */
+  section{padding:8rem 3rem;position:relative}
+  .section-head{margin-bottom:5rem;max-width:900px}
+  .section-tag{
+    font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--red);margin-bottom:1.5rem;
+    display:flex;align-items:center;gap:.8rem;
+  }
+  .section-tag::before{content:'';width:30px;height:1px;background:var(--red)}
+  .section-title{
+    font-family:'Shippori Mincho',serif;
+    font-size:clamp(2.5rem,5vw,4.5rem);
+    line-height:1;font-weight:700;
+  }
+  .section-title em{font-style:normal;color:var(--red)}
+
+  /* PHILOSOPHY */
+  .philosophy{
+    background:var(--bg-2);
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  }
+  .philosophy-kanji{
+    font-family:'Noto Sans JP',sans-serif;font-weight:900;
+    font-size:clamp(10rem,20vw,18rem);
+    color:var(--red);line-height:.85;
+    position:relative;
+  }
+  .philosophy-kanji::after{
+    content:'Kaizen';position:absolute;bottom:-1rem;left:0;
+    font-family:'Space Grotesk',sans-serif;font-size:.9rem;
+    letter-spacing:.3em;color:var(--ink);font-weight:400;
+  }
+  .philosophy-text p{
+    font-size:1.1rem;line-height:1.8;color:var(--ink-dim);margin-bottom:1.5rem;
+  }
+  .philosophy-text p strong{color:var(--ink);font-weight:500}
+  .philosophy-list{list-style:none;margin-top:2.5rem}
+  .philosophy-list li{
+    padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,.08);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.95rem;
+  }
+  .philosophy-list li span:last-child{color:var(--red);font-family:'Noto Sans JP',sans-serif}
+
+  /* STATS */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+    padding:5rem 3rem;
+    background:
+      linear-gradient(180deg,var(--bg),var(--bg-2));
+    border-top:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
+  }
+  .stat{
+    padding:2rem 0;border-right:1px solid rgba(255,255,255,.08);
+  }
+  .stat:last-child{border-right:none}
+  .stat-num{
+    font-family:'Shippori Mincho',serif;font-size:clamp(2.5rem,4vw,4rem);
+    font-weight:700;color:var(--ink);line-height:1;margin-bottom:.5rem;
+  }
+  .stat-num .plus{color:var(--red)}
+  .stat-label{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+
+  /* COLLECTION */
+  .collection-grid{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem;
+  }
+  .product{
+    position:relative;overflow:hidden;
+    background:var(--bg-2);
+    
+  }
+  .product:nth-child(1){grid-column:span 7;aspect-ratio:4/5}
+  .product:nth-child(2){grid-column:span 5;aspect-ratio:4/5}
+  .product:nth-child(3){grid-column:span 5;aspect-ratio:4/5}
+  .product:nth-child(4){grid-column:span 7;aspect-ratio:4/5}
+  .product-img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .8s var(--ease),filter .5s;
+    filter:grayscale(.2);
+  }
+  .product:hover .product-img{transform:scale(1.08);filter:grayscale(0)}
+  .product-info{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:2rem;
+    background:linear-gradient(180deg,transparent,rgba(10,10,12,.95));
+    transform:translateY(20%);transition:transform .5s var(--ease);
+  }
+  .product:hover .product-info{transform:translateY(0)}
+  .product-name{
+    font-family:'Shippori Mincho',serif;font-size:1.5rem;font-weight:700;
+    margin-bottom:.3rem;
+  }
+  .product-jp{font-family:'Noto Sans JP',sans-serif;font-size:.8rem;color:var(--red);letter-spacing:.2em;margin-bottom:.8rem}
+  .product-meta{display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+  .product-price{color:var(--ink)}
+  .product-price .old{text-decoration:line-through;color:var(--ink-dim);margin-right:.5rem;font-size:.75rem}
+  .product-tag{
+    position:absolute;top:1.5rem;left:1.5rem;
+    background:var(--red);color:var(--ink);
+    padding:.3rem .8rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  }
+
+  /* LOOKBOOK */
+  .lookbook{
+    background:var(--bg-2);
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    padding:0;
+  }
+  .lookbook-visual{
+    position:relative;min-height:600px;overflow:hidden;
+  }
+  .lookbook-visual img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1)}
+  .lookbook-content{padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center}
+  .lookbook-content h3{
+    font-family:'Shippori Mincho',serif;font-size:2.5rem;line-height:1.1;margin-bottom:1.5rem;
+  }
+  .lookbook-content p{color:var(--ink-dim);line-height:1.7;margin-bottom:2rem}
+  .lookbook-features{list-style:none;margin-bottom:2.5rem}
+  .lookbook-features li{
+    padding:.8rem 0;display:flex;align-items:center;gap:1rem;
+    border-bottom:1px solid rgba(255,255,255,.08);font-size:.9rem;
+  }
+  .lookbook-features li::before{content:'—';color:var(--red)}
+
+  /* CULTURE STRIP */
+  .culture{
+    padding:6rem 3rem;
+    background:
+      linear-gradient(rgba(10,10,12,.85),rgba(10,10,12,.85)),
+      url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600') center/cover;
+    text-align:center;
+  }
+  .culture-quote{
+    font-family:'Shippori Mincho',serif;
+    font-size:clamp(2rem,4vw,3.5rem);
+    line-height:1.2;max-width:900px;margin:0 auto 2rem;
+  }
+  .culture-quote em{color:var(--red);font-style:normal}
+  .culture-author{font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim)}
+
+  /* CITIES */
+  .cities{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
+  .city{
+    aspect-ratio:1;border:1px solid rgba(255,255,255,.1);
+    display:grid;place-items:center;position:relative;overflow:hidden;
+    transition:all .4s var(--ease);
+  }
+  .city:hover{border-color:var(--red);background:rgba(230,57,70,.05)}
+  .city-name{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:700}
+  .city-jp{font-family:'Noto Sans JP',sans-serif;font-size:.7rem;color:var(--red);margin-top:.3rem;letter-spacing:.1em}
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:var(--red-deep);
+    padding:8rem 3rem;
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .newsletter::before{
+    content:'登録';position:absolute;right:-3%;top:50%;transform:translateY(-50%);
+    font-family:'Noto Sans JP',sans-serif;font-weight:900;
+    font-size:clamp(12rem,22vw,22rem);
+    color:rgba(0,0,0,.15);line-height:.9;pointer-events:none;
+  }
+  .newsletter h2{
+    font-family:'Shippori Mincho',serif;font-size:clamp(2.5rem,4.5vw,4rem);
+    line-height:1;margin-bottom:1.5rem;
+  }
+  .newsletter p{color:rgba(255,255,255,.8);line-height:1.7;max-width:480px}
+  .newsletter-form{
+    display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.3);
+    padding-bottom:.5rem;
+  }
+  .newsletter-form input{
+    flex:1;background:transparent;border:none;outline:none;
+    color:var(--ink);font-size:1rem;padding:.8rem 0;font-family:inherit;
+  }
+  .newsletter-form input::placeholder{color:rgba(255,255,255,.5)}
+  .newsletter-form button{
+    background:transparent;border:none;color:var(--ink);
+    font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;
+    padding:0 1rem;font-family:inherit;
+  }
+  .newsletter-perks{margin-top:2rem;display:flex;gap:2rem;flex-wrap:wrap}
+  .newsletter-perks span{font-size:.8rem;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:.5rem}
+  .newsletter-perks span::before{content:'✓';color:var(--ink)}
+
+  /* FOOTER */
+  footer{
+    padding:5rem 3rem 2rem;
+    background:var(--bg);
+    border-top:1px solid rgba(255,255,255,.05);
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+    margin-bottom:4rem;
+  }
+  .footer-brand .logo{margin-bottom:1.5rem}
+  .footer-brand p{color:var(--ink-dim);font-size:.9rem;line-height:1.7;max-width:320px}
+  .footer-col h4{
+    font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--red);margin-bottom:1.5rem;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:.8rem}
+  .footer-col a{color:var(--ink-dim);font-size:.9rem;transition:color .3s}
+  .footer-col a:hover{color:var(--ink)}
+  .footer-bottom{
+    padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.8rem;color:var(--ink-dim);
+  }
+  .footer-payments{display:flex;gap:1rem;align-items:center}
+  .footer-payments span{
+    padding:.3rem .7rem;border:1px solid rgba(255,255,255,.15);
+    font-size:.7rem;letter-spacing:.1em;
+  }
+
+  /* Reveal animations */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* Responsive */
+  @media(max-width:968px){
+    body{cursor:auto}
+    nav{padding:1rem 1.5rem}
+    .nav-links{display:none}
+    section{padding:5rem 1.5rem}
+    .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}
+    .hero-kanji{font-size:14rem;right:-5%}
+    .hero-visual{height:60vh;margin-top:3rem}
+    .philosophy,.lookbook,.newsletter{grid-template-columns:1fr;gap:3rem}
+    .lookbook-content{padding:4rem 1.5rem}
+    .stats{grid-template-columns:repeat(2,1fr);padding:3rem 1.5rem}
+    .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+    .collection-grid{grid-template-columns:1fr}
+    .product:nth-child(n){grid-column:span 1;aspect-ratio:3/4}
+    .cities{grid-template-columns:repeat(3,1fr)}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+    .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  }
+</style>
+</head>
+<body>
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want a store like this? Book a call →</a></div>
+
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-mark">街</div>
+    SUTORĪTO
+  </div>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#cities">Cities</a></li>
+  </ul>
+  <a href="#collection" class="nav-cta">Shop Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-kanji">ストリート</div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Est. 2024 · Mumbai × Tokyo</div>
+    <h1 class="hero-title">
+      <span class="line"><span>Wear the</span></span>
+      <span class="line"><span><em>streets</em> of</span></span>
+      <span class="line"><span>two worlds.</span></span>
+    </h1>
+    <p class="hero-sub">Japanese craftsmanship meets Indian soul. Limited-run streetwear engineered in Osaka, worn from Bandra to Bengaluru. Every thread tells a story of rebellion, precision, and pride.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn btn-primary">Shop Drop 004</a>
+      <a href="#lookbook" class="btn">View Lookbook</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=900&q=80" alt="Sutorīto streetwear model" />
+      <div class="hero-img-overlay"></div>
+      <div class="hero-stamp">DROP 004 · 限定</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Harajuku DNA</span><span>Mumbai Soul</span><span>Hand-finished in Osaka</span><span>Shipped Pan-India</span><span>Limited to 500 pieces</span><span>Cash on Delivery</span><span>Harajuku DNA</span><span>Mumbai Soul</span><span>Hand-finished in Osaka</span><span>Shipped Pan-India</span><span>Limited to 500 pieces</span><span>Cash on Delivery</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="culture">
+  <div class="philosophy-kanji reveal">改善</div>
+  <div class="philosophy-text reveal">
+    <div class="section-tag">Our Philosophy</div>
+    <h2 class="section-title">Kaizen — <em>the craft</em> of getting better, every single day.</h2>
+    <p>For three years, we've studied the ateliers of Tokyo and the gallis of Mumbai. <strong>Sutorīto is not fast fashion.</strong> It's a discipline — 47 steps from sketch to stitch, zero compromises.</p>
+    <p>Every piece is cut from Japanese cotton, dyed with Indian botanicals, and finished by artisans who've spent decades mastering their craft. This is streetwear that <strong>respects the hands that made it</strong>.</p>
+    <ul class="philosophy-list">
+      <li><span>400 GSM Japanese cotton</span><span>綿</span></li>
+      <li><span>Hand-dyed with Indian indigo</span><span>藍</span></li>
+      <li><span>Reinforced sashiko stitching</span><span>刺</span></li>
+      <li><span>Limited to 500 units per drop</span><span>限</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">50<span class="plus">K+</span></div>
+    <div class="stat-label">Pieces sold across India</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">28<span class="plus">+</span></div>
+    <div class="stat-label">Cities we ship to</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">4.9<span class="plus">★</span></div>
+    <div class="stat-label">Average customer rating</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">₹0<span class="plus"></span></div>
+    <div class="stat-label">Shipping above ₹1499</div>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section id="collection">
+  <div class="section-head reveal">
+    <div class="section-tag">Drop 004 · 秋 Collection</div>
+    <h2 class="section-title">Autumn in <em>Shibuya</em>,<br/>worn in <em>Colaba</em>.</h2>
+  </div>
+
+  <div class="collection-grid">
+    <div class="product reveal">
+      <span class="product-tag">New</span>
+      <img class="product-img" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&q=80" alt="Ronin Oversized Tee" />
+      <div class="product-info">
+        <div class="product-jp">浪人 · RONIN</div>
+        <div class="product-name">Ronin Oversized Tee</div>
+        <div class="product-meta">
+          <div class="product-price"><span class="old">₹2,499</span>₹1,899</div>
+          <div>4 colors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <img class="product-img" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80" alt="Shogun Bomber" />
+      <div class="product-info">
+        <div class="product-jp">将軍 · SHOGUN</div>
+        <div class="product-name">Shogun Bomber Jacket</div>
+        <div class="product-meta">
+          <div class="product-price">₹6,499</div>
+          <div>2 colors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <span class="product-tag" style="background:#333">Sold out · Restock soon</span>
+      <img class="product-img" src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=900&q=80" alt="Kyoto Cargo" />
+      <div class="product-info">
+        <div class="product-jp">京都 · KYOTO</div>
+        <div class="product-name">Kyoto Cargo Pants</div>
+        <div class="product-meta">
+          <div class="product-price">₹3,299</div>
+          <div>3 colors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <img class="product-img" src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=900&q=80" alt="Oni Hoodie" />
+      <div class="product-info">
+        <div class="product-jp">鬼 · ONI</div>
+        <div class="product-name">Oni Heavyweight Hoodie</div>
+        <div class="product-meta">
+          <div class="product-price">₹4,199</div>
+          <div>5 colors</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<section class="lookbook" id="lookbook">
+  <div class="lookbook-visual">
+    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1000&q=80" alt="Sutorīto lookbook" />
+  </div>
+  <div class="lookbook-content reveal">
+    <div class="section-tag">Lookbook · FW26</div>
+    <h3>Shot on the streets of <em style="color:var(--red);font-style:normal">Bandra West</em>,<br/>styled like <em style="color:var(--red);font-style:normal">Omotesando</em>.</h3>
+    <p>Our FW26 lookbook captures the duality of Sutorīto — the discipline of Japanese design meeting the chaotic energy of Indian streets. Every frame is a love letter to the cities that raised us.</p>
+    <ul class="lookbook-features">
+      <li>Shot by Arjun Mehta, Mumbai</li>
+      <li>Styled by Yuki Tanaka, Tokyo</li>
+      <li>Featuring artists from Delhi, Bangalore & Pune</li>
+      <li>Full lookbook out now</li>
+    </ul>
+    <a href="#newsletter" class="btn btn-primary">Get the Lookbook Zine — ₹499</a>
+  </div>
+</section>
+
+<!-- CULTURE QUOTE -->
+<section class="culture">
+  <div class="reveal">
+    <p class="culture-quote">"The streets don't care where you're from. They only care <em>what you wear</em> when you walk them."</p>
+    <div class="culture-author">— Rohan Desai, Founder · Sutorīto</div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section id="cities">
+  <div class="section-head reveal">
+    <div class="section-tag">Community</div>
+    <h2 class="section-title">Worn across <em>India</em>.<br/>Loved in every city.</h2>
+  </div>
+  <div class="cities">
+    <div class="city reveal"><div><div class="city-name">Mumbai</div><div class="city-jp">ムンバイ</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Delhi</div><div class="city-jp">デリー</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Bangalore</div><div class="city-jp">バンガロール</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Pune</div><div class="city-jp">プネ</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Hyderabad</div><div class="city-jp">ハイデラバード</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Kolkata</div><div class="city-jp">コルカタ</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Chennai</div><div class="city-jp">チェンナイ</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Ahmedabad</div><div class="city-jp">アフマダーバード</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Jaipur</div><div class="city-jp">ジャイプル</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Chandigarh</div><div class="city-jp">チャンディーガル</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Goa</div><div class="city-jp">ゴア</div></div></div>
+    <div class="city reveal"><div><div class="city-name">Indore</div><div class="city-jp">インドール</div></div></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter">
+  <div class="reveal">
+    <div class="section-tag" style="color:var(--ink)">Join the Crew</div>
+    <h2>First access to drops.<br/>No spam. <em style="color:var(--ink);font-style:normal">Ever.</em></h2>
+    <p>Get 48-hour early access to every drop, exclusive collab invites, and a ₹200 off welcome credit. We drop 4 times a year — you'll be the first to know.</p>
+    <div class="newsletter-perks">
+      <span>Early access to drops</span>
+      <span>₹200 welcome credit</span>
+      <span>Invite-only collabs</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <form class="newsletter-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Registered ✓'">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.6)">Or DM us on Instagram <strong style="color:var(--ink)">@sutorito.studio</strong></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-mark">街</div>SUTORĪTO</div>
+      <p>Japanese streetwear, engineered for the Indian streets. Limited drops. Unlimited attitude. Made with discipline in Osaka, worn with pride across India.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#collection">New Arrivals</a></li>
+        <li><a href="#collection">Tees</a></li>
+        <li><a href="#collection">Hoodies</a></li>
+        <li><a href="#collection">Outerwear</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide (IN)</a></li>
+        <li><a href="#">Shipping & COD</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#culture">Our Story</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#">Stockists</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Sutorīto — a fictional label, designed &amp; built by Doyen Website Developer</div>
+    <div class="footer-payments">
+      <span>UPI</span><span>COD</span><span>VISA</span><span>RAZORPAY</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Parallax kanji
+  const kanji = document.querySelector('.hero-kanji');
+  window.addEventListener('scroll',()=>{
+    if(kanji) kanji.style.transform = `translateY(calc(-50% + ${window.scrollY*.25}px))`;
+  });
+</script>
+</body>
+</html>

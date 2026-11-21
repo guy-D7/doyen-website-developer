@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threadline — Everyday essentials, made to last</title>
+<meta name="description" content="D2C fashion store by Doyen Website Developer: size guidance, slide-out cart and free-shipping progress built for mobile conversion.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+ body{background:#F4F1EA}
+ html{scroll-behavior:smooth;scroll-padding-top:72px}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}
+ .ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}
+ body.preview .ribbon{display:none}
+ .size.on{background:#111;color:#fff;border-color:#111}
+ #drawer{transform:translateX(100%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+ #drawer.open{transform:none}
+ #scrim{opacity:0;pointer-events:none;transition:opacity .3s}
+ #scrim.open{opacity:1;pointer-events:auto}
+ .card img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+ .card:hover img{transform:scale(1.06)}
+ .bump{animation:bump .4s}
+ @keyframes bump{50%{transform:scale(1.35)}}
+ .marq{display:flex;width:max-content;animation:m 22s linear infinite}@keyframes m{to{transform:translateX(-50%)}}
+ .toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,200px);opacity:0;transition:all .4s;z-index:70}
+ .toast.show{transform:translate(-50%,0);opacity:1}
+</style>
+<link rel="stylesheet" href="/assets/css/threadline.css">
+</head>
+<body class="text-neutral-900">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want a store like this? Book a call →</a></div>
+<div class="bg-olive text-white text-xs overflow-hidden py-2"><div class="marq gap-10 font-semibold tracking-wide"><span>FREE SHIPPING OVER ₹1,999</span><span>·</span><span>CASH ON DELIVERY AVAILABLE</span><span>·</span><span>7-DAY EASY RETURNS</span><span>·</span><span>FREE SHIPPING OVER ₹1,999</span><span>·</span><span>CASH ON DELIVERY AVAILABLE</span><span>·</span><span>7-DAY EASY RETURNS</span><span>·</span></div></div>
+
+<header class="sticky top-0 z-40 bg-cream/90 backdrop-blur border-b border-black/10">
+ <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+  <a href="#" class="font-black text-2xl tracking-tighter">THREADLINE</a>
+  <nav class="hidden md:flex gap-8 text-sm font-semibold"><a href="#shop" class="hover:text-olive">Shop</a><a href="#why" class="hover:text-olive">Why us</a><a href="#reviews" class="hover:text-olive">Fit guide</a></nav>
+  <button id="cartBtn" class="relative p-2" aria-label="Open cart">
+   <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+   <span id="count" class="absolute -top-1 -right-1 bg-olive text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+  </button>
+ </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-5 pt-8 pb-12 grid md:grid-cols-2 gap-8 items-center">
+ <div>
+  <p class="text-olive font-bold text-sm mb-3">NEW · THE HEAVYWEIGHT DROP</p>
+  <h1 class="text-5xl md:text-7xl font-black leading-[0.95] tracking-tighter mb-5">Essentials that outlast the trend.</h1>
+  <p class="text-neutral-600 text-lg mb-7">240 GSM cotton, relaxed fits, colours that don't fade after three washes.</p>
+  <a href="#shop" class="inline-block bg-neutral-900 text-white px-8 py-4 font-bold hover:bg-olive transition">Shop the drop →</a>
+  <div class="flex gap-6 mt-8 text-xs font-semibold text-neutral-600"><span>✓ COD available</span><span>✓ 7-day returns</span><span>✓ Ships in 24h</span></div>
+ </div>
+ <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-neutral-300">
+  <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&h=1100&fit=crop" alt="Model wearing heavyweight tee" class="w-full h-full object-cover">
+  <span class="absolute top-4 left-4 bg-white text-xs font-bold px-3 py-1.5 rounded-full">🔥 Selling fast</span>
+ </div>
+</section>
+
+<section id="shop" class="max-w-6xl mx-auto px-5 pb-16">
+ <div class="flex items-end justify-between mb-6"><h2 class="text-3xl font-black tracking-tight">Best sellers</h2>
+  <div class="flex gap-2 text-sm" id="filters"><button class="f px-3 py-1.5 rounded-full bg-neutral-900 text-white" data-f="all">All</button><button class="f px-3 py-1.5 rounded-full border border-black/20" data-f="tops">Tops</button><button class="f px-3 py-1.5 rounded-full border border-black/20" data-f="bottoms">Bottoms</button></div></div>
+ <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="grid"></div>
+</section>
+
+<section id="why" class="bg-neutral-900 text-white py-16">
+ <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-3 gap-8">
+  <div><div class="text-3xl mb-3">🧵</div><h3 class="font-bold text-xl mb-2">240 GSM cotton</h3><p class="text-neutral-400">Thick enough to hold shape, soft from the first wear.</p></div>
+  <div><div class="text-3xl mb-3">📏</div><h3 class="font-bold text-xl mb-2">Fit you can trust</h3><p class="text-neutral-400">Every product shows model height and size worn.</p></div>
+  <div><div class="text-3xl mb-3">↩️</div><h3 class="font-bold text-xl mb-2">Easy returns</h3><p class="text-neutral-400">Wrong size? Free exchange within 7 days.</p></div>
+ </div>
+</section>
+
+<section id="reviews" class="max-w-3xl mx-auto px-5 py-16 text-center">
+ <h2 class="text-3xl font-black mb-3">Not sure about your size?</h2>
+ <p class="text-neutral-600 mb-6">Tell us your height and usual fit — we'll suggest a size.</p>
+ <div class="flex flex-col sm:flex-row gap-3 justify-center">
+  <select id="ht" class="border border-black/20 p-3 bg-white"><option value="S">Under 5'6"</option><option value="M" selected>5'6" – 5'10"</option><option value="L">5'10" – 6'1"</option><option value="XL">Over 6'1"</option></select>
+  <select id="fit" class="border border-black/20 p-3 bg-white"><option value="0">Regular fit</option><option value="1">I like it oversized</option></select>
+  <button id="fitBtn" class="bg-olive text-white px-6 py-3 font-bold">Suggest size</button>
+ </div>
+ <p id="fitOut" class="mt-5 font-bold text-xl"></p>
+</section>
+
+<footer class="border-t border-black/10 pt-8 pb-24 md:pb-8 text-center text-sm text-neutral-500">© Threadline — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+
+<div id="scrim" class="fixed inset-0 bg-black/50 z-50"></div>
+<aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 flex flex-col">
+ <div class="p-5 border-b flex justify-between items-center"><h3 class="font-black text-xl">Your bag</h3><button id="closeCart" class="text-2xl" aria-label="Close">✕</button></div>
+ <div class="p-5 bg-cream"><p class="text-sm font-semibold mb-2" id="shipMsg"></p><div class="h-2 bg-black/10 rounded-full overflow-hidden"><div id="shipBar" class="h-2 bg-olive rounded-full transition-all duration-500" style="width:0"></div></div></div>
+ <div id="lines" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+ <div class="p-5 border-t space-y-3">
+  <div class="flex justify-between font-bold text-lg"><span>Subtotal</span><span id="sub">₹0</span></div>
+  <button id="checkout" class="w-full bg-neutral-900 text-white py-4 font-bold hover:bg-olive transition">Checkout securely →</button>
+  <p class="text-xs text-center text-neutral-500">UPI · Cards · Cash on Delivery</p>
+ </div>
+</aside>
+<div id="sticky" class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t p-3 z-40 flex gap-3 items-center"><div class="flex-1 text-sm"><b id="stickyTotal">₹0</b><span class="text-neutral-500"> in bag</span></div><button id="stickyBtn" class="bg-neutral-900 text-white px-5 py-3 font-bold">View bag</button></div>
+<div class="toast bg-neutral-900 text-white px-5 py-3 text-sm font-semibold rounded-full" id="toast"></div>
+
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const P=[
+ {id:1,n:'Heavyweight Tee — Bone',p:1299,c:'tops',img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=750&fit=crop',tag:'Best seller'},
+ {id:2,n:'Boxy Hoodie — Charcoal',p:2499,c:'tops',img:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=750&fit=crop',tag:'New'},
+ {id:3,n:'Relaxed Denim — Washed',p:2199,c:'bottoms',img:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=750&fit=crop'},
+ {id:4,n:'Field Jacket — Olive',p:3499,c:'tops',img:'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=750&fit=crop',tag:'Only 6 left'},
+ {id:5,n:'Utility Cargo — Sand',p:1899,c:'bottoms',img:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=750&fit=crop'},
+ {id:6,n:'Oversized Tee — Black',p:1199,c:'tops',img:'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&h=750&fit=crop'},
+];
+const FREE=1999, cart={}; const inr=n=>'₹'+n.toLocaleString('en-IN'); const $=s=>document.querySelector(s);
+function render(f='all'){
+ $('#grid').innerHTML=P.filter(p=>f==='all'||p.c===f).map(p=>`
+ <div class="card group">
+  <div class="relative overflow-hidden rounded-xl bg-neutral-300 aspect-[4/5] mb-3"><img src="${p.img}" alt="${p.n}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.opacity=0">
+   ${p.tag?`<span class="absolute top-2 left-2 bg-white text-[11px] font-bold px-2 py-1 rounded-full">${p.tag}</span>`:''}</div>
+  <h3 class="font-bold text-sm md:text-base leading-tight">${p.n}</h3>
+  <p class="text-sm mb-2">${inr(p.p)} <span class="text-neutral-400 line-through text-xs">${inr(Math.round(p.p*1.3/100)*100-1)}</span></p>
+  <div class="flex gap-1 mb-2">${['S','M','L','XL'].map(s=>`<button class="size w-8 h-8 border border-black/20 text-xs font-semibold rounded" data-id="${p.id}" data-s="${s}">${s}</button>`).join('')}</div>
+  <button class="add w-full border-2 border-neutral-900 py-2 text-sm font-bold hover:bg-neutral-900 hover:text-white transition" data-id="${p.id}">Add to bag</button>
+ </div>`).join('');
+ document.querySelectorAll('.size').forEach(b=>b.onclick=()=>{document.querySelectorAll(`.size[data-id="${b.dataset.id}"]`).forEach(x=>x.classList.remove('on'));b.classList.add('on')});
+ document.querySelectorAll('.add').forEach(b=>b.onclick=()=>{const s=document.querySelector(`.size.on[data-id="${b.dataset.id}"]`); if(!s){toast('Pick a size first 👆');b.parentElement.querySelectorAll('.size').forEach(x=>x.animate([{transform:'translateY(0)'},{transform:'translateY(-4px)'},{transform:'none'}],{duration:300}));return;} add(+b.dataset.id,s.dataset.s); b.textContent='Added ✓'; setTimeout(()=>b.textContent='Add to bag',1200);});
+}
+function add(id,s){const k=id+'-'+s; cart[k]=(cart[k]||0)+1; update(); $('#count').classList.remove('bump'); void $('#count').offsetWidth; $('#count').classList.add('bump'); openCart();}
+function update(){
+ const items=Object.entries(cart).filter(([,q])=>q>0); let sub=0, n=0;
+ $('#lines').innerHTML=items.length?items.map(([k,q])=>{const [id,s]=k.split('-'); const p=P.find(x=>x.id==id); sub+=p.p*q; n+=q; return `
+  <div class="flex gap-4"><img src="${p.img}" class="w-20 h-24 object-cover rounded bg-neutral-200" alt=""><div class="flex-1"><p class="font-bold text-sm">${p.n}</p><p class="text-xs text-neutral-500 mb-2">Size ${s}</p>
+  <div class="flex items-center gap-3"><button class="q w-7 h-7 border rounded" data-k="${k}" data-d="-1">−</button><span class="font-bold">${q}</span><button class="q w-7 h-7 border rounded" data-k="${k}" data-d="1">+</button></div></div><p class="font-bold text-sm">${inr(p.p*q)}</p></div>`}).join(''):'<p class="text-neutral-500 text-center py-10">Your bag is empty — let\'s fix that.</p>';
+ document.querySelectorAll('.q').forEach(b=>b.onclick=()=>{cart[b.dataset.k]+=+b.dataset.d; update();});
+ $('#sub').textContent=inr(sub); $('#count').textContent=n; $('#stickyTotal').textContent=inr(sub);
+ const left=FREE-sub; $('#shipBar').style.width=Math.min(100,sub/FREE*100)+'%';
+ $('#shipMsg').innerHTML=left>0?`You're <b>${inr(left)}</b> away from <b>free shipping</b> 🚚`:'🎉 You\'ve unlocked <b>free shipping</b>!';
+}
+function openCart(){$('#drawer').classList.add('open');$('#scrim').classList.add('open')}
+function closeCart(){$('#drawer').classList.remove('open');$('#scrim').classList.remove('open')}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t.h);t.h=setTimeout(()=>t.classList.remove('show'),2000)}
+$('#cartBtn').onclick=openCart; $('#stickyBtn').onclick=openCart; $('#closeCart').onclick=closeCart; $('#scrim').onclick=closeCart;
+$('#checkout').onclick=()=>{ if(!$('#count').textContent||$('#count').textContent==='0') return toast('Add something first'); closeCart(); toast('✓ Showcase build — payment would open here'); };
+document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{document.querySelectorAll('.f').forEach(x=>x.className='f px-3 py-1.5 rounded-full border border-black/20');b.className='f px-3 py-1.5 rounded-full bg-neutral-900 text-white';render(b.dataset.f)});
+$('#fitBtn').onclick=()=>{const order=['S','M','L','XL'];const raw=order.indexOf($('#ht').value)+(+$('#fit').value);const i=Math.min(raw,order.length-1);$('#fitOut').textContent=raw>i?`XL is our roomiest size — it fits relaxed, so go XL 👌`:`We'd suggest size ${order[i]} 👌`;};
+document.querySelectorAll('img').forEach(i=>i.addEventListener('error',()=>i.style.opacity=0));
+render(); update();
+</script>
+</body>
+</html>

@@ -1,14 +1,13 @@
 {
   "name": "doyen-website-developer",
-  "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "description": "Doyen Website Developer: portfolio and lead-generation site. Source in src/, static files in public/, deployed on Vercel.",
+  "engines": { "node": ">=18" },
   "scripts": {
-    "build": "node build.mjs",
-    "audit": "node audit.mjs",
-    "start": "npx --yes serve dist"
+    "build": "node scripts/build.mjs",
+    "start": "npx --yes serve public"
   },
-  "optionalDependencies": {
-    "sharp": "^0.33.5"
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
   }
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawsitive Vet Clinic — Gentle care for your pets</title>
+<meta name="description" content="Clinic website by Doyen Website Developer: 3-step appointment booking, sticky emergency call and reassuring FAQs.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+ html{scroll-behavior:smooth;scroll-padding-top:72px}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+ .pick{transition:all .2s;cursor:pointer}.pick:hover{transform:translateY(-3px)}.pick.on{border-color:#0EA5A4;background:#F0FDFA;box-shadow:0 0 0 3px rgba(14,165,164,.2)}
+ .bob{animation:bob 3s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px)}}
+ details summary::-webkit-details-marker{display:none} details[open] .pl{transform:rotate(45deg)}
+</style>
+<link rel="stylesheet" href="/assets/css/pawsitive.css">
+</head>
+<body class="bg-white text-slate-800">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want a clinic site like this? →</a></div>
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
+ <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+  <a href="#" class="font-black text-xl text-teal-dark">🐾 Pawsitive</a>
+  <a href="#book" class="bg-teal text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-teal-dark">Book visit</a>
+ </div>
+</header>
+<section class="bg-butter">
+ <div class="max-w-6xl mx-auto px-5 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+  <div>
+   <span class="inline-block bg-white text-teal-dark text-xs font-bold px-3 py-1.5 rounded-full mb-5">✓ Fear-free certified team</span>
+   <h1 class="text-4xl md:text-6xl font-black leading-tight mb-5">Gentle vet care your pet won't dread.</h1>
+   <p class="text-lg text-slate-600 mb-7">Check-ups, vaccinations, grooming and surgery — book in under a minute, even at 2am.</p>
+   <div class="flex flex-wrap gap-3"><a href="#book" class="bg-teal text-white font-bold px-7 py-4 rounded-full hover:bg-teal-dark">Book an appointment</a><a href="tel:+910000000000" class="bg-white font-bold px-7 py-4 rounded-full border-2 border-red-200 text-red-600">🚨 Emergency</a></div>
+  </div>
+  <div class="relative"><div class="rounded-[2.5rem] overflow-hidden aspect-square bg-teal/20"><img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=900&h=900&fit=crop" class="w-full h-full object-cover" alt="Two happy dogs" onerror="this.style.opacity=0"></div>
+   <div class="bob absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 text-sm font-bold">⭐ Next slot: <span id="nextSlot" class="text-teal-dark"></span></div></div>
+ </div>
+</section>
+<section class="max-w-6xl mx-auto px-5 py-16">
+ <h2 class="text-3xl font-black mb-8">How we can help</h2>
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  <div class="bg-slate-50 rounded-3xl p-6 hover:bg-teal hover:text-white transition"><div class="text-3xl mb-2">🩺</div><h3 class="font-extrabold">Check-ups</h3><p class="text-sm opacity-70">From ₹500</p></div>
+  <div class="bg-slate-50 rounded-3xl p-6 hover:bg-teal hover:text-white transition"><div class="text-3xl mb-2">💉</div><h3 class="font-extrabold">Vaccinations</h3><p class="text-sm opacity-70">From ₹700 · reminders included</p></div>
+  <div class="bg-slate-50 rounded-3xl p-6 hover:bg-teal hover:text-white transition"><div class="text-3xl mb-2">✂️</div><h3 class="font-extrabold">Grooming</h3><p class="text-sm opacity-70">From ₹900</p></div>
+  <div class="bg-slate-50 rounded-3xl p-6 hover:bg-teal hover:text-white transition"><div class="text-3xl mb-2">🏥</div><h3 class="font-extrabold">Surgery</h3><p class="text-sm opacity-70">In-house OT · estimate first</p></div>
+ </div>
+</section>
+<section id="book" class="bg-teal/5 pt-16 pb-28 md:pb-16">
+ <div class="max-w-3xl mx-auto px-5">
+  <h2 class="text-3xl md:text-4xl font-black text-center mb-2">Book in 3 steps</h2><p class="text-center text-slate-500 mb-8">No calls, no waiting on hold.</p>
+  <div class="flex gap-2 mb-8" id="bar"></div>
+  <div class="bg-white rounded-3xl shadow-lg p-6 md:p-8 min-h-[280px]" id="panel"></div>
+  <div class="flex justify-between mt-6"><button id="back" class="font-bold text-slate-400 disabled:opacity-0">← Back</button><button id="next" class="bg-teal text-white font-bold px-7 py-3 rounded-full">Continue →</button></div>
+ </div>
+</section>
+<section class="max-w-3xl mx-auto px-5 py-16">
+ <h2 class="text-3xl font-black mb-6">Pet parents often ask</h2>
+ <div class="space-y-3">
+  <details class="bg-slate-50 rounded-2xl p-5"><summary class="flex justify-between font-bold cursor-pointer">My pet gets anxious at the vet. What do you do?<span class="pl transition text-teal text-xl">+</span></summary><p class="text-slate-600 mt-3">Separate cat and dog waiting areas, treats, low-stress handling and no rushed appointments.</p></details>
+  <details class="bg-slate-50 rounded-2xl p-5"><summary class="flex justify-between font-bold cursor-pointer">Do you handle emergencies at night?<span class="pl transition text-teal text-xl">+</span></summary><p class="text-slate-600 mt-3">Yes — tap the emergency button and you're connected to the on-call vet.</p></details>
+  <details class="bg-slate-50 rounded-2xl p-5"><summary class="flex justify-between font-bold cursor-pointer">Can I see pricing before I book?<span class="pl transition text-teal text-xl">+</span></summary><p class="text-slate-600 mt-3">Every service shows a starting price. You'll get a clear estimate before any treatment.</p></details>
+ </div>
+</section>
+<footer class="text-center text-xs text-slate-400 pb-24 md:pb-8">© Pawsitive — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+<a href="tel:+910000000000" class="md:hidden fixed bottom-4 left-4 right-4 bg-red-600 text-white text-center font-black py-4 rounded-full shadow-xl z-40">🚨 Emergency? Call the on-call vet</a>
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const $=s=>document.querySelector(s);
+$('#nextSlot').textContent='Tomorrow 10:30';
+const S={pet:'',svc:'',day:'',time:'',name:'',phone:''};let st=0;
+const PETS=[['🐶','Dog'],['🐱','Cat'],['🐰','Rabbit'],['🦜','Bird / other']];
+const SVC=[['🩺','Check-up','₹500 · 20 min'],['💉','Vaccination','₹700 · 15 min'],['✂️','Grooming','₹900 · 60 min'],['🦷','Dental','₹1,200 · 40 min']];
+const petName=()=>S.pet==='Bird / other'?'pet':S.pet.toLowerCase();
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const nowHM=()=>{const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')};
+const past=t=>S.day===ymd(new Date())&&t<=nowHM();
+function days(){const a=[];for(let i=0;i<5;i++){const d=new Date();d.setDate(d.getDate()+i);a.push(d)}return a}
+function view(){
+ $('#bar').innerHTML=['Pet','Service','Time'].map((l,i)=>`<div class="flex-1"><div class="h-2 rounded-full ${i<=st?'bg-teal':'bg-slate-200'} transition-all"></div><p class="text-xs font-bold mt-2 ${i<=st?'text-teal-dark':'text-slate-400'}">${i+1}. ${l}</p></div>`).join('');
+ const P=$('#panel');
+ if(st===0)P.innerHTML=`<p class="font-extrabold text-lg mb-4">Who are we seeing?</p><div class="grid grid-cols-2 gap-3">${PETS.map(([e,n])=>`<div class="pick border-2 rounded-2xl p-5 text-center ${S.pet===n?'on':''}" data-k="pet" data-v="${n}"><div class="text-4xl">${e}</div><p class="font-bold mt-1">${n}</p></div>`).join('')}</div>`;
+ if(st===1)P.innerHTML=`<p class="font-extrabold text-lg mb-4">What does your ${petName()} need?</p><div class="grid md:grid-cols-2 gap-3">${SVC.map(([e,n,m])=>`<div class="pick border-2 rounded-2xl p-4 flex items-center gap-4 ${S.svc===n?'on':''}" data-k="svc" data-v="${n}"><span class="text-3xl">${e}</span><div><p class="font-bold">${n}</p><p class="text-xs text-slate-500">${m}</p></div></div>`).join('')}</div>`;
+ if(st===2)P.innerHTML=`<p class="font-extrabold text-lg mb-4">Pick a slot</p><div class="flex gap-2 overflow-x-auto mb-4">${days().map((d,i)=>{const v=ymd(d);return `<div class="pick shrink-0 border-2 rounded-2xl px-4 py-3 text-center ${S.day===v?'on':''}" data-k="day" data-v="${v}"><p class="text-xs">${i===0?'Today':d.toLocaleDateString('en-IN',{weekday:'short'})}</p><p class="font-black text-xl">${d.getDate()}</p></div>`}).join('')}</div>
+  <div class="grid grid-cols-3 md:grid-cols-5 gap-2 mb-5">${['09:30','10:30','11:30','13:00','15:00','16:30','17:30','18:30','19:30','20:30'].map(t=>`<div class="pick border-2 rounded-xl py-2 text-center text-sm font-bold ${S.time===t?'on':''} ${past(t)?'opacity-30 line-through pointer-events-none':''}" data-k="time" data-v="${t}">${t}</div>`).join('')}</div>
+  <div class="grid md:grid-cols-2 gap-3"><input id="nm" value="${S.name}" placeholder="Your name" class="border-2 rounded-xl p-3"><input id="ph" value="${S.phone}" placeholder="Mobile number" inputmode="tel" class="border-2 rounded-xl p-3"></div><p id="err" class="text-sm text-red-600 mt-3 min-h-[1.25rem]"></p>`;
+ if(st===3)P.innerHTML=`<div class="text-center py-6"><div class="text-6xl mb-3">🎉</div><h3 class="text-2xl font-black mb-2">See you soon, ${S.name||'friend'}!</h3><p class="text-slate-600">${S.svc} for your ${petName()} · ${new Date(S.day+'T00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'short'})} at ${S.time}</p><p class="text-xs text-slate-400 mt-4">Showcase build — no appointment is booked. A live clinic site sends a WhatsApp reminder the day before.</p></div>`;
+ P.querySelectorAll('.pick').forEach(p=>p.onclick=()=>{if(st===2){S.name=($('#nm')||{}).value||S.name;S.phone=($('#ph')||{}).value||S.phone}S[p.dataset.k]=p.dataset.v;if(p.dataset.k==='day'&&past(S.time))S.time='';view();if(st<2)setTimeout(()=>{st++;view()},250)});
+ $('#back').disabled=st===0||st===3;$('#next').style.display=st===3?'none':'';$('#next').textContent=st===2?'Confirm booking ✓':'Continue →';
+ P.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:280});
+}
+function nudge(){$('#panel').animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'none'}],{duration:250})}
+$('#next').onclick=()=>{if(st===0&&!S.pet)return nudge();if(st===1&&!S.svc)return nudge();if(st===2){S.name=$('#nm').value;S.phone=$('#ph').value;const m=!S.day?'Pick a day.':!S.time?'Pick a time slot.':!S.phone.replace(/\D/g,'').match(/^\d{10,12}$/)?'Add a 10-digit mobile number for the reminder.':'';if(m){$('#err').textContent=m;return nudge()}}st++;view()};
+$('#back').onclick=()=>{if(st>0){st--;view()}};
+view();
+</script>
+</body>
+</html>

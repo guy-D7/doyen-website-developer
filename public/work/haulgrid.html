@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HaulGrid Logistics — Pan-India FTL, PTL & Warehousing</title>
+<meta name="description" content="B2B logistics website by Doyen Website Developer: 4-step RFQ wizard with an instant indicative estimate.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+ html{scroll-behavior:smooth;scroll-padding-top:72px}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+ .opt{transition:all .2s;cursor:pointer}.opt:hover{border-color:#0B1F3A}.opt.on{border-color:#0B1F3A;background:#0B1F3A;color:#fff}
+ .route{stroke-dasharray:6 8;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-28}}
+ .truck{animation:drive 6s ease-in-out infinite}@keyframes drive{0%{offset-distance:0%}100%{offset-distance:100%}}
+ .tab.on{background:#FACC15;color:#0B1F3A}
+ input[type=range]{accent-color:#0B1F3A}
+</style>
+<link rel="stylesheet" href="/assets/css/haulgrid.css">
+</head>
+<body class="bg-slate-50 text-slate-900">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want a B2B site like this? Book a call →</a></div>
+<header class="bg-white border-b sticky top-0 z-40">
+ <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+  <a class="font-bold text-xl text-navy flex items-center gap-2" href="#"><span class="w-8 h-8 bg-hi rounded grid place-items-center">▦</span>HaulGrid</a>
+  <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600"><a href="#services">Services</a><a href="#industries">Industries</a><a href="#rfq">Get a quote</a></nav>
+  <a href="#rfq" class="bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-blue-900">Request a Quote</a>
+ </div>
+</header>
+
+<section class="bg-navy text-white relative overflow-hidden">
+ <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+  <div>
+   <p class="text-hi text-sm font-semibold mb-4 tracking-wider">FTL · PTL · WAREHOUSING · 3PL</p>
+   <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">Freight that arrives when your production line needs it.</h1>
+   <p class="text-blue-200 text-lg mb-8 max-w-xl">GPS-tracked fleet, dedicated account managers and transparent pricing for manufacturers and distributors across India.</p>
+   <div class="flex flex-wrap gap-3"><a href="#rfq" class="bg-hi text-navy font-bold px-7 py-4 rounded">Get an estimate in 60s →</a><button id="deck" class="border border-white/30 px-7 py-4 rounded hover:bg-white/10">Download capability deck</button></div>
+   <div class="flex gap-8 mt-10 text-sm text-blue-200"><span>✓ ISO-style SOPs</span><span>✓ Live tracking</span><span>✓ E-way bill handled</span></div>
+  </div>
+  <div class="relative">
+   <svg viewBox="0 0 400 300" class="w-full">
+    <rect width="400" height="300" rx="12" fill="#0F2A4D"/>
+    <g fill="#1E3A63"><circle cx="90" cy="80" r="5"/><circle cx="300" cy="70" r="5"/><circle cx="200" cy="160" r="5"/><circle cx="110" cy="230" r="5"/><circle cx="320" cy="220" r="5"/></g>
+    <path id="r1" d="M90 80 Q 200 20 300 70 T 320 220 Q 200 280 110 230 T 90 80" fill="none" stroke="#FACC15" stroke-width="2" class="route"/>
+    <circle r="7" fill="#FACC15" class="truck" style="offset-path:path('M90 80 Q 200 20 300 70 T 320 220 Q 200 280 110 230 T 90 80')"/>
+    <g fill="#fff" font-size="11" font-family="IBM Plex Sans"><text x="58" y="70">Ahmedabad</text><text x="282" y="58">Kolkata</text><text x="180" y="150">Nagpur</text><text x="80" y="255">Bengaluru</text><text x="300" y="245">Chennai</text></g>
+   </svg>
+   <div class="absolute -bottom-4 -left-4 bg-white text-navy rounded-lg shadow-xl p-4 text-sm"><p class="text-xs text-slate-500">Shipment HG-2041</p><p class="font-bold">In transit · ETA 14:30</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="services" class="max-w-7xl mx-auto px-6 py-20">
+ <h2 class="text-3xl font-bold mb-10">What we move</h2>
+ <div class="grid md:grid-cols-4 gap-5">
+  <div class="bg-white border rounded-lg p-6 hover:shadow-xl hover:-translate-y-1 transition"><div class="text-2xl mb-3">🚛</div><h3 class="font-semibold mb-2">Full Truck Load</h3><p class="text-sm text-slate-600">Dedicated 14–32 ft vehicles, point to point.</p></div>
+  <div class="bg-white border rounded-lg p-6 hover:shadow-xl hover:-translate-y-1 transition"><div class="text-2xl mb-3">📦</div><h3 class="font-semibold mb-2">Part Truck Load</h3><p class="text-sm text-slate-600">Pay only for the space you use.</p></div>
+  <div class="bg-white border rounded-lg p-6 hover:shadow-xl hover:-translate-y-1 transition"><div class="text-2xl mb-3">🏭</div><h3 class="font-semibold mb-2">Warehousing</h3><p class="text-sm text-slate-600">WMS-backed storage near industrial hubs.</p></div>
+  <div class="bg-white border rounded-lg p-6 hover:shadow-xl hover:-translate-y-1 transition"><div class="text-2xl mb-3">🔁</div><h3 class="font-semibold mb-2">Contract 3PL</h3><p class="text-sm text-slate-600">Inbound, inventory and outbound — managed.</p></div>
+ </div>
+</section>
+
+<section id="industries" class="bg-white border-y py-20">
+ <div class="max-w-7xl mx-auto px-6">
+  <h2 class="text-3xl font-bold mb-6">Built around your industry</h2>
+  <div class="flex flex-wrap gap-2 mb-8" id="tabs"></div>
+  <div id="ind" class="grid md:grid-cols-2 gap-10 items-center"></div>
+ </div>
+</section>
+
+<section id="rfq" class="max-w-4xl mx-auto px-6 py-20">
+ <div class="text-center mb-10"><h2 class="text-3xl md:text-4xl font-bold mb-3">Get an indicative estimate</h2><p class="text-slate-600">4 quick steps. No call needed to see a number.</p></div>
+ <div class="bg-white border rounded-xl shadow-lg overflow-hidden">
+  <div class="flex border-b text-xs font-semibold" id="steps"></div>
+  <div class="p-8 min-h-[300px]" id="panel"></div>
+  <div class="flex justify-between p-6 border-t bg-slate-50"><button id="back" class="px-5 py-2.5 text-slate-500 disabled:opacity-30">← Back</button><button id="next" class="bg-navy text-white px-6 py-2.5 rounded font-semibold">Next →</button></div>
+ </div>
+</section>
+<footer class="bg-navy text-blue-200 text-sm text-center py-8">© HaulGrid — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-32 bg-navy text-white px-5 py-3 rounded transition-transform duration-500 text-sm z-50"></div>
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const $=s=>document.querySelector(s);
+function toast(m){const t=$('#toast');t.textContent=m;t.style.transform='translate(-50%,0)';clearTimeout(t.h);t.h=setTimeout(()=>t.style.transform='translate(-50%,8rem)',2500)}
+$('#deck').onclick=()=>toast('📄 Showcase build: the capability deck download would start here');
+const IND={Manufacturing:['Inbound raw material on a schedule','Milk-run pickups from vendor clusters, synced to your production plan, with exception alerts before a delay hits the line.','https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop'],
+ Automotive:['Just-in-time parts movement','Dedicated vehicles and time-slot delivery for OEM and tier-1 plants, with damage-free handling SOPs.','https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=500&fit=crop'],
+ FMCG:['High-frequency distribution','PTL consolidation to distributors and modern trade, with proof of delivery on every drop.','https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=500&fit=crop'],
+ 'E-commerce':['Warehouse to last-mile handover','Pick, pack and line-haul to courier hubs, with inventory visible in real time.','https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop']};
+$('#tabs').innerHTML=Object.keys(IND).map((k,i)=>`<button class="tab px-4 py-2 rounded-full border text-sm font-semibold ${i?'':'on'}" data-k="${k}">${k}</button>`).join('');
+function ind(k){const [t,d,img]=IND[k];$('#ind').innerHTML=`<div><h3 class="text-2xl font-bold mb-3">${t}</h3><p class="text-slate-600 mb-6">${d}</p><a href="#rfq" class="font-semibold text-navy underline">Get a ${k.toLowerCase()} quote →</a></div><div class="rounded-lg overflow-hidden bg-slate-200 aspect-video"><img src="${img}" class="w-full h-full object-cover" alt="" onerror="this.style.opacity=0"></div>`;$('#ind').animate([{opacity:0},{opacity:1}],{duration:400})}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');ind(b.dataset.k)});ind('Manufacturing');
+
+const CITIES=['Bengaluru','Pune','Mumbai','Delhi NCR','Chennai','Kolkata','Jamshedpur','Hyderabad','Ahmedabad'];
+const D={from:'',to:'',type:'',wt:5,when:'',name:'',email:'',co:''}; let s=0;
+const LABELS=['Route','Load','Timing','Estimate'];
+// Approx. road distance: great-circle km x 1.25 road factor (was a random-looking string hash: Pune→Mumbai came out at 1,474 km)
+const GEO={'Bengaluru':[12.97,77.59],'Pune':[18.52,73.86],'Mumbai':[19.08,72.88],'Delhi NCR':[28.61,77.21],'Chennai':[13.08,80.27],'Kolkata':[22.57,88.36],'Jamshedpur':[22.80,86.18],'Hyderabad':[17.39,78.49],'Ahmedabad':[23.02,72.57]};
+function km(a,b){if(a===b)return 40;const r=x=>x*Math.PI/180,[la1,lo1]=GEO[a],[la2,lo2]=GEO[b];const h=Math.sin(r(la2-la1)/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(r(lo2-lo1)/2)**2;return Math.round(6371*2*Math.asin(Math.sqrt(h))*1.25)}
+function view(){
+ $('#steps').innerHTML=LABELS.map((l,i)=>`<div class="flex-1 py-3 text-center ${i<=s?'bg-hi text-navy':'text-slate-400'} transition">${i+1}. ${l}</div>`).join('');
+ const P=$('#panel');
+ if(s===0) P.innerHTML=`<p class="font-semibold mb-4">Where is it going?</p><div class="grid md:grid-cols-2 gap-4"><label class="text-sm">Pickup city<select id="from" class="mt-1 w-full border rounded p-3"><option value="">Select…</option>${CITIES.map(c=>`<option ${D.from===c?'selected':''}>${c}</option>`).join('')}</select></label><label class="text-sm">Drop city<select id="to" class="mt-1 w-full border rounded p-3"><option value="">Select…</option>${CITIES.map(c=>`<option ${D.to===c?'selected':''}>${c}</option>`).join('')}</select></label></div>`;
+ if(s===1) P.innerHTML=`<p class="font-semibold mb-4">What are you shipping?</p><div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">${['FTL','PTL','Temperature controlled','Over-dimensional'].map(t=>`<div class="opt border-2 rounded-lg p-4 text-center text-sm font-semibold ${D.type===t?'on':''}" data-t="${t}">${t}</div>`).join('')}</div><label class="text-sm font-semibold">Approx. weight: <span id="wv">${D.wt}</span> tonnes</label><input id="wt" type="range" min="1" max="32" value="${D.wt}" class="w-full mt-2">`;
+ if(s===2) P.innerHTML=`<p class="font-semibold mb-4">When do you need pickup?</p><div class="grid md:grid-cols-3 gap-3">${['Within 24 hours','This week','Recurring / contract'].map(t=>`<div class="opt border-2 rounded-lg p-5 text-center font-semibold ${D.when===t?'on':''}" data-w="${t}">${t}</div>`).join('')}</div>`;
+ if(s===3){const k=km(D.from,D.to); const ftl=k*(42+D.wt*1.6); const base=D.type==='PTL'?Math.min(k*D.wt*4.2,ftl):ftl; const mult=D.type==='Temperature controlled'?1.35:D.type==='Over-dimensional'?1.6:1; const urg=D.when==='Within 24 hours'?1.12:D.when==='Recurring / contract'?0.9:1; const v=Math.round(base*mult*urg/100)*100;
+  P.innerHTML=`<div class="grid md:grid-cols-2 gap-8"><div class="bg-navy text-white rounded-lg p-6"><p class="text-blue-200 text-sm">${D.from} → ${D.to} · ~${k.toLocaleString('en-IN')} km · ${D.type} · ${D.wt}t</p><p class="text-xs text-blue-300 mt-4">Indicative range</p><p class="text-4xl font-bold text-hi">₹${(v*.9).toLocaleString('en-IN',{maximumFractionDigits:0})} – ₹${(v*1.1).toLocaleString('en-IN',{maximumFractionDigits:0})}</p><p class="text-xs text-blue-300 mt-3">Indicative range. Final quote confirmed by your account manager.</p></div><div class="space-y-3"><p class="font-semibold">Lock this in — get a firm quote in 2 hours</p><input id="nm" placeholder="Your name" class="w-full border rounded p-3"><input id="co" placeholder="Company" class="w-full border rounded p-3"><input id="em" type="email" placeholder="Work email" class="w-full border rounded p-3"></div></div>`;}
+ document.querySelectorAll('[data-t]').forEach(o=>o.onclick=()=>{D.type=o.dataset.t;view()});
+ document.querySelectorAll('[data-w]').forEach(o=>o.onclick=()=>{D.when=o.dataset.w;view()});
+ const wt=$('#wt'); if(wt) wt.oninput=()=>{D.wt=+wt.value;$('#wv').textContent=wt.value};
+ $('#back').disabled=s===0; $('#next').textContent=s===3?'Request firm quote ✓':'Next →';
+ P.animate([{opacity:0,transform:'translateX(16px)'},{opacity:1,transform:'none'}],{duration:300});
+}
+$('#next').onclick=()=>{
+ if(s===0){D.from=$('#from').value;D.to=$('#to').value;if(!D.from||!D.to)return toast('Select both cities')}
+ if(s===1&&!D.type)return toast('Pick a load type');
+ if(s===2&&!D.when)return toast('Pick a timing');
+ if(s===3){if(!/\S+@\S+\.\S+/.test($('#em').value))return toast('Add a work email');$('#panel').innerHTML='<div class="text-center py-12"><div class="text-5xl mb-4">✅</div><h3 class="text-2xl font-bold mb-2">RFQ received</h3><p class="text-slate-600">An account manager will send a firm quote within 2 working hours. <span class="block text-xs mt-2">Showcase build — no RFQ is sent.</span></p></div>';$('#next').style.display='none';$('#back').style.display='none';return}
+ s++;view()};
+$('#back').onclick=()=>{if(s>0){s--;view()}};
+view();
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Expo 2027 — Manufacturing & Automation Expo, Bengaluru</title>
+<meta name="description" content="Event website by Doyen Website Developer: countdown, early-bird ticket tiers, agenda tabs and sponsor enquiry.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ html{scroll-behavior:smooth;scroll-padding-top:72px}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+ .glow{background:radial-gradient(600px circle at 70% 30%,rgba(124,58,237,.45),transparent 60%),radial-gradient(500px circle at 20% 80%,rgba(198,255,61,.18),transparent 60%)}
+ .d.on{background:#C6FF3D;color:#000}
+ .tier.on{border-color:#C6FF3D;box-shadow:0 0 0 1px #C6FF3D,0 20px 60px -20px rgba(198,255,61,.4)}
+ #sp{opacity:0;pointer-events:none;transition:opacity .3s}#sp.open{opacity:1;pointer-events:auto}
+ .tick{display:inline-block;animation:tk .5s}@keyframes tk{from{transform:translateY(-30%);opacity:.3}}
+ .grid-lines{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:60px 60px}
+</style>
+<link rel="stylesheet" href="/assets/css/forge-expo.css">
+</head>
+<body class="bg-black text-white">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want an event site like this? Book a call →</a></div>
+<header class="sticky top-0 z-40 bg-black/80 backdrop-blur border-b border-white/10">
+ <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+  <a href="#" class="font-disp font-black text-lg">FORGE<span class="text-lime">/</span>27</a>
+  <nav class="hidden md:flex gap-8 text-sm text-white/70"><a href="#agenda">Agenda</a><a href="#tickets">Tickets</a><a href="#" id="spLink">Sponsor</a></nav>
+  <a href="#tickets" class="bg-lime text-black text-sm font-bold px-5 py-2.5 rounded-full">Get passes</a>
+ </div>
+</header>
+<section class="relative glow grid-lines overflow-hidden">
+ <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+  <p class="text-lime font-semibold text-sm mb-6">18–20 FEB 2027 · BIEC, BENGALURU</p>
+  <h1 class="font-disp font-black text-5xl md:text-8xl leading-[.9] mb-8">Where India's<br>factories<br><span class="text-lime">get smarter.</span></h1>
+  <p class="text-white/70 text-lg max-w-xl mb-10">3 days · 200+ exhibitors · robotics, automation and Industry 4.0 — on one floor.</p>
+  <div class="flex flex-wrap gap-4 items-center mb-12">
+   <a href="#tickets" class="bg-lime text-black font-bold px-8 py-4 rounded-full hover:scale-105 transition">Claim early-bird pass →</a>
+   <button id="spBtn" class="border border-white/30 px-8 py-4 rounded-full hover:bg-white/10">Become a sponsor</button>
+  </div>
+  <div class="flex gap-3 md:gap-5" id="cd"></div>
+  <p class="text-white/50 text-xs mt-3">until early-bird pricing ends · 15 Jan 2027</p>
+ </div>
+</section>
+<section id="agenda" class="max-w-7xl mx-auto px-6 py-20">
+ <div class="flex flex-wrap justify-between items-end gap-4 mb-8"><h2 class="font-disp text-3xl md:text-4xl font-bold">Agenda</h2><div class="flex gap-2" id="days"></div></div>
+ <div id="sessions" class="divide-y divide-white/10 border-y border-white/10"></div>
+</section>
+<section id="tickets" class="bg-white/[.03] border-y border-white/10 py-20">
+ <div class="max-w-7xl mx-auto px-6">
+  <h2 class="font-disp text-3xl md:text-4xl font-bold mb-2">Passes</h2><p class="text-white/60 mb-10">Early-bird prices — limited quantity.</p>
+  <div class="grid md:grid-cols-3 gap-5 mb-10" id="tiers"></div>
+  <div class="flex flex-col md:flex-row items-center justify-between gap-6 bg-white/5 rounded-2xl p-6 border border-white/10">
+   <div class="flex items-center gap-4"><span class="text-white/70">Quantity</span><button id="qm" class="w-10 h-10 rounded-full border border-white/20">−</button><span id="q" class="font-disp text-2xl w-8 text-center">1</span><button id="qp" class="w-10 h-10 rounded-full border border-white/20">+</button><span id="grp" class="text-lime text-xs"></span></div>
+   <div class="text-right"><p class="text-white/50 text-xs">Total</p><p class="font-disp text-3xl font-bold" id="tot"></p></div>
+   <button id="buy" class="bg-lime text-black font-bold px-8 py-4 rounded-full w-full md:w-auto">Checkout →</button>
+  </div>
+ </div>
+</section>
+<footer class="text-center text-white/40 text-xs py-10">© Forge Expo — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+<div id="sp" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-5">
+ <form id="spForm" class="bg-neutral-900 border border-white/10 rounded-3xl p-8 max-w-md w-full space-y-4">
+  <div class="flex justify-between"><h3 class="font-disp text-xl font-bold">Sponsor & exhibit</h3><button type="button" id="spX" class="text-white/50">✕</button></div>
+  <p class="text-white/60 text-sm">Get the sponsorship deck and floor plan.</p>
+  <input required placeholder="Company" class="w-full bg-black border border-white/15 rounded-xl p-3">
+  <input required type="email" placeholder="Work email" class="w-full bg-black border border-white/15 rounded-xl p-3">
+  <select class="w-full bg-black border border-white/15 rounded-xl p-3"><option>Interested in: Booth</option><option>Title sponsor</option><option>Session sponsor</option></select>
+  <button class="w-full bg-lime text-black font-bold py-3 rounded-full">Send me the deck</button>
+ </form>
+</div>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-32 bg-lime text-black font-semibold px-5 py-3 rounded-full transition-transform duration-500 text-sm z-[60]"></div>
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const $=s=>document.querySelector(s);
+function toast(m){const t=$('#toast');t.textContent=m;t.style.transform='translate(-50%,0)';clearTimeout(t.h);t.h=setTimeout(()=>t.style.transform='translate(-50%,8rem)',2600)}
+// countdown to a fixed early-bird deadline (a rolling per-visitor timer is fake urgency — a listed dark pattern under India's 2023 CCPA guidelines)
+const end=new Date('2027-01-15T23:59:59+05:30').getTime();
+let last={};function cd(){let s=Math.max(0,Math.floor((end-Date.now())/1000));const v={Days:Math.floor(s/86400),Hrs:Math.floor(s%86400/3600),Min:Math.floor(s%3600/60),Sec:s%60};
+ $('#cd').innerHTML=Object.entries(v).map(([k,n])=>`<div class="bg-white/5 border border-white/10 rounded-2xl w-20 md:w-24 py-4 text-center"><span class="font-disp text-3xl md:text-4xl font-bold ${last[k]!==n?'tick':''}">${String(n).padStart(2,'0')}</span><span class="block text-[10px] text-white/50 uppercase tracking-wider mt-1">${k}</span></div>`).join('');last=v}
+cd();const cdT=setInterval(()=>{cd();if(end<=Date.now()){clearInterval(cdT);document.querySelector('#cd+p').textContent='Early-bird pricing has ended'}},1000);
+const AG={'Day 1':[['10:00','Keynote: The lights-out factory, realistically','Main stage'],['11:30','Cobots on the shop floor — live demo','Hall B'],['14:00','Panel: Financing automation for MSMEs','Main stage'],['16:00','Startup pitch arena','Hall C']],
+ 'Day 2':[['10:00','Predictive maintenance with sensor data','Main stage'],['12:00','Workshop: PLC to cloud in 90 minutes','Lab 1'],['15:00','Women in manufacturing leadership','Hall B']],
+ 'Day 3':[['10:30','Supply chain resilience after 2026','Main stage'],['13:00','Buyer–seller meet (pre-booked)','Hall A'],['16:30','Awards & closing','Main stage']]};
+$('#days').innerHTML=Object.keys(AG).map((d,i)=>`<button class="d px-4 py-2 rounded-full border border-white/20 text-sm font-semibold ${i?'':'on'}" data-d="${d}">${d}</button>`).join('');
+function ag(d){$('#sessions').innerHTML=AG[d].map(([t,n,r])=>`<div class="py-5 grid grid-cols-12 gap-4 items-center hover:bg-white/5 px-3 transition"><span class="col-span-3 md:col-span-2 font-disp text-lime">${t}</span><span class="col-span-9 md:col-span-7 font-semibold">${n}</span><span class="hidden md:block md:col-span-3 text-right text-white/50 text-sm">${r}</span></div>`).join('');$('#sessions').animate([{opacity:0},{opacity:1}],{duration:300})}
+document.querySelectorAll('.d').forEach(b=>b.onclick=()=>{document.querySelectorAll('.d').forEach(x=>x.classList.remove('on'));b.classList.add('on');ag(b.dataset.d)});ag('Day 1');
+const T=[{n:'Visitor',p:0,o:0,f:['Expo floor access','Startup arena'],note:'Free with registration'},{n:'Delegate',p:3499,o:5999,f:['All conference sessions','Lunch & networking','Session recordings'],note:'Most popular',hot:1},{n:'VIP',p:8999,o:12999,f:['Everything in Delegate','Buyer–seller meet','VIP lounge & dinner'],note:'Only 40 left'}];
+let tier=1,q=1;
+$('#tiers').innerHTML=T.map((t,i)=>`<button class="tier text-left bg-white/5 border border-white/10 rounded-3xl p-7 transition ${i===1?'on':''}" data-i="${i}"><div class="flex justify-between mb-4"><h3 class="font-disp text-xl font-bold">${t.n}</h3><span class="text-xs ${t.hot?'bg-lime text-black':'bg-white/10'} px-2.5 py-1 rounded-full font-semibold">${t.note}</span></div><p class="font-disp text-4xl font-bold mb-1">${t.p?'₹'+t.p.toLocaleString('en-IN'):'Free'}</p>${t.o?`<p class="text-white/40 line-through text-sm mb-4">₹${t.o.toLocaleString('en-IN')}</p>`:'<p class="text-sm mb-4 text-white/40">&nbsp;</p>'}<ul class="space-y-2 text-sm text-white/70">${t.f.map(x=>`<li>✓ ${x}</li>`).join('')}</ul></button>`).join('');
+function tot(){const t=T[tier];const disc=q>=5?.15:0;const v=Math.round(t.p*q*(1-disc));$('#tot').textContent=t.p?'₹'+v.toLocaleString('en-IN'):'Free';$('#grp').textContent=t.p?(q>=5?'Group discount 15% applied':`Add ${5-q} more for 15% group discount`):'';$('#q').textContent=q}
+document.querySelectorAll('.tier').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tier').forEach(x=>x.classList.remove('on'));b.classList.add('on');tier=+b.dataset.i;tot()});
+$('#qm').onclick=()=>{q=Math.max(1,q-1);tot()};$('#qp').onclick=()=>{q=Math.min(20,q+1);tot()};
+$('#buy').onclick=()=>toast(T[tier].p?`✓ Showcase build: ${q} × ${T[tier].n} pass — payment would open here`:`✓ Showcase build: free registration form would open for ${q} visitor${q>1?'s':''}`);
+const op=e=>{e&&e.preventDefault();$('#sp').classList.add('open')};$('#spBtn').onclick=op;$('#spLink').onclick=op;$('#spX').onclick=()=>$('#sp').classList.remove('open');$('#sp').onclick=e=>{if(e.target.id==='sp')$('#sp').classList.remove('open')};addEventListener('keydown',e=>{if(e.key==='Escape')$('#sp').classList.remove('open')});
+$('#spForm').onsubmit=e=>{e.preventDefault();$('#sp').classList.remove('open');toast('✓ Showcase build: on a live site the sponsorship deck would be emailed now')};
+tot();
+</script>
+</body>
+</html>

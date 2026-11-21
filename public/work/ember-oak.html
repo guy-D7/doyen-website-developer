@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Oak — Wood-fired kitchen, Indiranagar</title>
+<meta name="description" content="Restaurant website by Doyen Website Developer: live open-now status, tabbed menu, 3-tap table booking and WhatsApp ordering.">
+<meta name="robots" content="noindex, follow">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ html{scroll-behavior:smooth;scroll-padding-top:72px}
+ .ribbon{background:#141414;color:#fff;font-size:12px;text-align:center;padding:8px;border-bottom:2px solid #D62828}.ribbon a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:#D62828;text-underline-offset:3px}body.preview .ribbon{display:none}
+ .mt.on{background:#E4572E;color:#fff;border-color:#E4572E}
+ .slot.on,.day.on{background:#E4572E;color:#fff;border-color:#E4572E}
+ .slot.full{opacity:.35;text-decoration:line-through;pointer-events:none}
+ .flame{animation:flick 2s ease-in-out infinite alternate}@keyframes flick{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.08) rotate(2deg)}}
+ #modal{opacity:0;pointer-events:none;transition:opacity .3s}#modal.open{opacity:1;pointer-events:auto}
+</style>
+<link rel="stylesheet" href="/assets/css/ember-oak.css">
+</head>
+<body class="bg-sand text-coal">
+<div class="ribbon">Designed &amp; built by <a href="/" target="_top">Doyen Website Developer</a> · <a href="/contact" target="_top">Want a restaurant site like this? →</a></div>
+<header class="bg-coal text-sand sticky top-0 z-40">
+ <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+  <a href="#" class="font-serif text-2xl font-semibold">Ember <span class="text-ember">&</span> Oak</a>
+  <span id="status" class="text-xs px-3 py-1.5 rounded-full font-semibold"></span>
+ </div>
+</header>
+
+<section class="relative bg-coal text-sand overflow-hidden">
+ <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=900&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40" onerror="this.style.opacity=0">
+ <div class="relative max-w-6xl mx-auto px-5 py-24 md:py-36">
+  <p class="text-ember font-semibold tracking-widest text-xs mb-4"><span class="flame inline-block">🔥</span> WOOD-FIRED · INDIRANAGAR, BENGALURU</p>
+  <h1 class="font-serif text-5xl md:text-7xl font-extrabold leading-[1] mb-6 max-w-3xl">Slow fire.<br>Big flavour.</h1>
+  <p class="text-lg text-sand/80 max-w-xl mb-8">Seasonal small plates, sourdough from our oven, and a table that's ready when you are.</p>
+  <div class="flex flex-wrap gap-3"><a href="#book" class="bg-ember text-white px-7 py-4 rounded-full font-semibold hover:brightness-110">Reserve a table</a><a id="waOrder" target="_blank" rel="noopener" class="bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold">Order on WhatsApp</a></div>
+ </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-5 py-16" id="menu">
+ <div class="flex flex-wrap items-end justify-between gap-4 mb-8"><h2 class="font-serif text-4xl font-semibold">The menu</h2>
+  <div class="flex gap-2" id="mtabs"></div></div>
+ <div class="grid md:grid-cols-2 gap-x-12 gap-y-6" id="items"></div>
+</section>
+
+<section id="book" class="bg-coal text-sand py-16">
+ <div class="max-w-3xl mx-auto px-5">
+  <h2 class="font-serif text-4xl font-semibold mb-2">Book in 3 taps</h2>
+  <p class="text-sand/60 mb-8">Pick a day, party size and time. Instant confirmation.</p>
+  <p class="text-sm font-semibold mb-3">1 · Day</p><div class="flex gap-2 overflow-x-auto pb-2 mb-6" id="days"></div>
+  <p class="text-sm font-semibold mb-3">2 · Guests</p>
+  <div class="flex items-center gap-4 mb-6"><button id="minus" class="w-11 h-11 rounded-full border border-sand/30 text-xl">−</button><span id="guests" class="text-3xl font-serif w-10 text-center">2</span><button id="plus" class="w-11 h-11 rounded-full border border-sand/30 text-xl">+</button><span class="text-sand/50 text-sm">8+? Ask about private dining.</span></div>
+  <p class="text-sm font-semibold mb-3">3 · Time</p><div class="grid grid-cols-3 md:grid-cols-6 gap-2 mb-8" id="slots"></div>
+  <button id="confirm" class="w-full bg-ember text-white py-4 rounded-full font-semibold text-lg disabled:opacity-40" disabled>Choose a time</button>
+ </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-3 gap-6 text-sm">
+ <div class="bg-white rounded-2xl p-6"><h3 class="font-serif text-xl font-semibold mb-2">📍 Find us</h3><p>12th Main, Indiranagar, Bengaluru<br><a class="text-ember font-semibold" href="https://www.google.com/maps/search/?api=1&query=12th+Main+Indiranagar+Bengaluru" target="_blank" rel="noopener">Open in Maps →</a></p></div>
+ <div class="bg-white rounded-2xl p-6"><h3 class="font-serif text-xl font-semibold mb-2">🕰 Hours</h3><p>Tue–Sun · 12:00–15:30 & 19:00–23:30<br>Closed Mondays</p></div>
+ <div class="bg-white rounded-2xl p-6"><h3 class="font-serif text-xl font-semibold mb-2">🎉 Private dining</h3><p>Up to 24 guests. <a id="pdEnq" class="text-ember font-semibold" target="_blank" rel="noopener">Enquire on WhatsApp →</a></p></div>
+</section>
+<footer class="text-center text-xs text-coal/50 pb-24 md:pb-8">© Ember & Oak — a fictional brand · designed &amp; built by Doyen Website Developer</footer>
+<div class="md:hidden fixed bottom-0 inset-x-0 grid grid-cols-2 z-40"><a href="#book" class="bg-ember text-white text-center py-4 font-semibold">Reserve</a><a id="waOrder2" target="_blank" rel="noopener" class="bg-[#25D366] text-white text-center py-4 font-semibold">WhatsApp</a></div>
+
+<div id="modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-5"><div class="bg-sand rounded-3xl p-8 max-w-sm w-full text-center"><div class="text-5xl mb-3">🍷</div><h3 class="font-serif text-2xl font-semibold mb-2">You're booked!</h3><p id="conf" class="text-coal/70 mb-6"></p><button id="closeM" class="bg-coal text-sand px-6 py-3 rounded-full">Done</button><p class="text-xs text-coal/40 mt-4">Showcase build — no real booking is made.</p></div></div>
+<script>
+if(new URLSearchParams(location.search).has('preview')) document.body.classList.add('preview');
+const $=s=>document.querySelector(s);
+const wa='https://wa.me/910000000000?text='+encodeURIComponent('Hi Ember & Oak, I would like to place an order.'); $('#waOrder').href=wa; $('#waOrder2').href=wa; $('#pdEnq').href='https://wa.me/910000000000?text='+encodeURIComponent('Hi Ember & Oak, I would like to enquire about private dining.');
+// Restaurant clock is IST, whatever the visitor's timezone
+const istNow=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
+// live open/closed
+(function(){const d=istNow(),h=d.getHours()+d.getMinutes()/60,day=d.getDay();const open=day!==1&&((h>=12&&h<15.5)||(h>=19&&h<23.5));const s=$('#status');s.textContent=open?'● Open now':'● Closed · opens '+(day===1?'Tue 12:00':(h<12?'12:00':h<19?'19:00':(day===0?'Tue 12:00':'tomorrow 12:00')));s.className+=open?' bg-green-600/20 text-green-300':' bg-white/10 text-sand/70'})();
+const MENU={'Small plates':[['Charred corn, chilli butter','Smoked paprika, lime, feta',320,'🌶'],['Burrata & heirloom tomato','Basil oil, wood-fired sourdough',540,'⭐'],['Ghee-roast mushrooms','Mangalorean spice, curry leaf',380,''],['Tandoori broccoli','Hung curd, pickled onion',340,'🌱']],
+ 'From the fire':[['Wood-fired chicken','Kashmiri chilli, garlic toum',620,'⭐'],['Lamb shoulder','12-hour, smoked, mint salsa',890,''],['Fire-roast paneer steak','Makhani glaze, charred greens',540,'🌱'],['Catch of the day','Kokum beurre blanc',780,'']],
+ 'Desserts':[['Burnt basque cheesecake','Jaggery caramel',360,'⭐'],['Filter-coffee tiramisu','Chicory mascarpone',340,''],['Smoked dark chocolate','Sea salt, olive oil',320,'']]};
+$('#mtabs').innerHTML=Object.keys(MENU).map((k,i)=>`<button class="mt px-4 py-2 rounded-full border border-coal/20 text-sm font-semibold ${i?'':'on'}" data-k="${k}">${k}</button>`).join('');
+function menu(k){$('#items').innerHTML=MENU[k].map(([n,d,p,t])=>`<div class="flex justify-between gap-4 border-b border-coal/10 pb-4"><div><h3 class="font-serif text-xl font-semibold">${n} <span class="text-sm">${t}</span></h3><p class="text-coal/60 text-sm">${d}</p></div><span class="font-semibold">₹${p}</span></div>`).join('');$('#items').animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:350})}
+document.querySelectorAll('.mt').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mt').forEach(x=>x.classList.remove('on'));b.classList.add('on');menu(b.dataset.k)});menu('Small plates');
+// booking
+const B={day:null,g:2,t:null};const days=[];for(let i=0;i<10;i++){const d=istNow();d.setDate(d.getDate()+i);if(d.getDay()!==1)days.push(d)}
+$('#days').innerHTML=days.slice(0,7).map((d,i)=>`<button class="day shrink-0 border border-sand/30 rounded-2xl px-4 py-3 text-center ${i?'':'on'}" data-i="${i}"><span class="block text-xs opacity-70">${i===0&&d.toDateString()===istNow().toDateString()?'Today':d.toLocaleDateString('en-IN',{weekday:'short'})}</span><span class="font-serif text-xl">${d.getDate()}</span></button>`).join('');B.day=days[0];
+function slots(){const all=['12:30','13:00','13:30','14:00','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];const seed=B.day.getDate()+B.g;const n=istNow(),isToday=B.day.toDateString()===n.toDateString(),cut=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');$('#slots').innerHTML=all.map((t,i)=>`<button class="slot border border-sand/30 rounded-xl py-2.5 text-sm ${(i*7+seed)%5===0||(isToday&&t<=cut)?'full':''} ${B.t===t?'on':''}" data-t="${t}">${t}</button>`).join('');document.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{B.t=s.dataset.t;slots();upd()})}
+function upd(){const c=$('#confirm');c.disabled=!B.t;c.textContent=B.t?`Confirm table for ${B.g} · ${B.day.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'})} · ${B.t}`:'Choose a time'}
+document.querySelectorAll('.day').forEach(b=>b.onclick=()=>{document.querySelectorAll('.day').forEach(x=>x.classList.remove('on'));b.classList.add('on');B.day=days[+b.dataset.i];B.t=null;slots();upd()});
+$('#minus').onclick=()=>{B.g=Math.max(1,B.g-1);$('#guests').textContent=B.g;B.t=null;slots();upd()};$('#plus').onclick=()=>{B.g=Math.min(8,B.g+1);$('#guests').textContent=B.g;B.t=null;slots();upd()};
+$('#confirm').onclick=()=>{$('#conf').textContent=`Table for ${B.g} on ${B.day.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})} at ${B.t}. A confirmation would be sent on WhatsApp.`;$('#modal').classList.add('open')};
+$('#closeM').onclick=()=>$('#modal').classList.remove('open');
+$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('open')};addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('open')});
+slots();upd();
+</script>
+</body>
+</html>

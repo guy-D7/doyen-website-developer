@@ -1,31 +1,40 @@
-# Doyen Website Developer: website
+# Doyen Website Developer
 
-[Live site](https://guy-d7.github.io/doyen-website-developer/)
+Portfolio and lead-generation website for Doyen Website Developer, a freelance website designer and developer in Bengaluru.
 
-Static site, no runtime dependencies (JS ≈ 1.7 KB, CSS ≈ 11 KB). Deploy the `dist/` folder to Netlify, Vercel, Cloudflare Pages or any static host.
+## Structure
 
 ```
-npm install        # only needed for PNG icons / OG images (sharp)
-npm run build      # generates dist/
-npm run audit      # 700+ automated checks against the brief
+src/index.html        Main site source (Home, Services, Live Projects, About, Contact in one file)
+public/               Everything that gets served
+  work/               Live project builds (noindex)
+  assets/             Images, logo, mascot
+  404.html, icons, og-image.jpg, site.webmanifest
+tailwind/             Tailwind theme for each page
+scripts/build.mjs     Build: CSS + one HTML file per URL + sitemap.xml + robots.txt
+site.config.json      siteUrl (canonicals, social previews, sitemap, structured data)
+vercel.json           Vercel settings, redirects and headers
 ```
 
-## Before launch (all values are editable in `site.config.json`)
-1. `siteUrl`: your real domain (canonicals, sitemap, robots.txt and schema all read this).
-2. `email`, `phone`: currently shown as highlighted placeholders. Nothing is invented.
-3. `formAction`: a form endpoint (Formspree, Netlify Forms, etc.). Until set, the form opens the visitor's email app.
-4. `socialProfiles`: `[{ "name": "LinkedIn", "url": "https://..." }]`. Real profiles only; they feed `sameAs`.
-5. Replace the 3 placeholder projects in `data/projects.json`, then set `"placeholder": false`. Real project pages become indexable and join the sitemap automatically.
-6. Replace `/privacy/` and `/terms/` placeholder text.
-7. Submit `sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+## Deploy (Vercel)
 
-## Files
-- `content.mjs`: all page copy (services, FAQs, process, audiences)
-- `build.mjs`: layout, metadata, JSON-LD, sitemap, robots, OG images
-- `src/styles.css`, `src/main.js`: design system and minimal JS
-- Future `/blog`, `/resources`, `/guides`: add pages to the `pages` array in `build.mjs`; topic list is in `content.mjs` (`futureTopics`).
+Import the repo in Vercel. `vercel.json` sets everything: Vercel runs `npm ci` and `npm run build`, then serves `public/`.
 
-## Notes
-- Schema uses Organization (not LocalBusiness: no address/office exists), WebSite, Person, WebPage, BreadcrumbList, Service, FAQPage (only where the FAQ is visible) and CreativeWork.
-- robots.txt explicitly allows OAI-SearchBot, Googlebot and Bingbot; no GPTBot rule is added.
-- No rankings, results, prices, reviews or credentials are claimed anywhere.
+## Local preview
+
+```
+npm ci
+npm run build
+npm start          # serves public/ at http://localhost:3000
+```
+
+## Editing
+
+- Edit `src/index.html` (not `public/index.html`, which the build generates).
+- Page titles and descriptions for `/services`, `/portfolio`, `/about` and `/contact` live in `scripts/build.mjs` and in the router inside `src/index.html`. Keep the two in sync.
+- When you connect your own domain, change `siteUrl` in `site.config.json`, then redeploy.
+
+## After the first deploy
+
+1. Add the site to Google Search Console and Bing Webmaster Tools, and submit `/sitemap.xml`.
+2. Link the site from your Google Business Profile.
