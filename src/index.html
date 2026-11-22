@@ -29,14 +29,16 @@
           "logo": "%SITE%/icon-512.png",
           "image": "%SITE%/og-image.jpg",
           "name": "Doyen Website Developer",
-          "description": "Freelance website design and development for e-commerce brands, local businesses, B2B companies, hospitality and events.",
+          "description": "Freelance website design and development studio of Doyen Deb in Bengaluru, India. Custom websites for e-commerce brands, local businesses, B2B companies, hospitality and events — for clients in India and worldwide (remote).",
+          "alternateName": ["Doyen Deb — Website Designer & Developer"],
           "telephone": "+91-6200761179",
           "email": "hello.doyen7@gmail.com",
           "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "addressCountry": "IN" },
           "areaServed": [
             { "@type": "City", "name": "Bengaluru" },
             { "@type": "City", "name": "Jamshedpur" },
-            { "@type": "Country", "name": "India" }
+            { "@type": "Country", "name": "India" },
+            "Worldwide (remote)"
           ],
           "founder": { "@id": "%SITE%/#doyen" },
           "sameAs": ["https://www.linkedin.com/in/doyen-deb", "https://share.google/xXP8Jns63p3TURTO5"],
@@ -59,11 +61,22 @@
           "@id": "%SITE%/#doyen",
           "url": "%SITE%/about",
           "name": "Doyen Deb",
-          "jobTitle": "Website Designer & Developer",
+          "alternateName": ["D2", "Doyen Website Developer"],
+          "givenName": "Doyen",
+          "familyName": "Deb",
+          "jobTitle": "Freelance Website Designer & Developer",
+          "description": "Doyen Deb is a freelance website designer and developer based in Bengaluru, India, and the person behind Doyen Website Developer. A mechanical engineer by training, he worked in operations, e-commerce and SaaS before web development. He designs and builds custom, mobile-first websites — e-commerce stores, business websites, landing pages and redesigns — for clients in India and worldwide.",
+          "disambiguatingDescription": "Freelance website designer and developer in Bengaluru, India (doyenwebsitedeveloper.vercel.app). Not the English word 'doyen'.",
           "worksFor": { "@id": "%SITE%/#business" },
-          "alumniOf": "Ramaiah Institute of Technology",
-          "image": "%SITE%/assets/doyen-deb.webp",
-          "sameAs": ["https://www.linkedin.com/in/doyen-deb"]
+          "alumniOf": { "@type": "CollegeOrUniversity", "name": "Ramaiah Institute of Technology", "address": "Bengaluru, India" },
+          "hasCredential": { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "B.E. in Mechanical Engineering" },
+          "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "addressCountry": "IN" } },
+          "email": "hello.doyen7@gmail.com",
+          "telephone": "+91-6200761179",
+          "knowsAbout": ["Website design", "Web development", "E-commerce websites", "Shopify", "WordPress", "Next.js", "Landing pages", "Local SEO", "Generative engine optimisation (GEO)"],
+          "image": { "@type": "ImageObject", "@id": "%SITE%/#doyen-photo", "url": "%SITE%/doyen-deb.jpg", "contentUrl": "%SITE%/doyen-deb.jpg", "width": 600, "height": 600, "caption": "Doyen Deb, freelance website designer and developer in Bengaluru" },
+          "mainEntityOfPage": "%SITE%/about",
+          "sameAs": ["https://www.linkedin.com/in/doyen-deb", "https://share.google/xXP8Jns63p3TURTO5", "%SITE%/"]
         },
         {
           "@type": "FAQPage",
@@ -73,13 +86,14 @@
             { "@type": "Question", "name": "Should I use WordPress, Shopify, or custom development?", "acceptedAnswer": { "@type": "Answer", "text": "Shopify suits product-led e-commerce. WordPress works well for content-heavy sites. Custom (React / Next.js) is best for unique functionality or full control over performance. I recommend based on your model, not my preference." } },
             { "@type": "Question", "name": "Will I own my website and be able to edit it myself?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The domain, hosting and code are in your name, and the site is set up so your team can update text, images and products without a developer." } },
             { "@type": "Question", "name": "How do I improve my website's conversion rate?", "acceptedAnswer": { "@type": "Answer", "text": "Clear value proposition above the fold, frictionless forms and checkout, mobile-first design, fast load times, trust signals and well-placed calls to action." } },
-            { "@type": "Question", "name": "Do you work with businesses outside Bengaluru?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. I work in person in Bengaluru and Jamshedpur and remotely with businesses anywhere in India, over calls and WhatsApp." } },
+            { "@type": "Question", "name": "Do you work with businesses outside Bengaluru?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. I meet clients in person in Bengaluru and Jamshedpur, and work remotely with businesses anywhere in India and worldwide, over video calls, email and WhatsApp." } },
             { "@type": "Question", "name": "Do you provide ongoing support and maintenance?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — backups, security updates, performance monitoring and content updates, on a plan that fits how often your site changes." } }
           ]
         }
       ]
     }
     </script>
+    <link rel="alternate" type="text/plain" href="%SITE%/llms.txt" title="Doyen Deb — profile for AI assistants">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="%SITE%/og-image.jpg">
     <meta name="robots" content="index, follow">
@@ -279,8 +293,17 @@
         .fbig:hover { color:#D62828; transform:translateX(6px); }
         .fsmall { font-size:15px; line-height:1.95; color:#404040; transition:color .2s; }
         .fsmall:hover { color:#D62828; }
-        .ask-ai a { display:inline-flex; align-items:center; gap:6px; border:1.5px solid #D4D4D4; padding:7px 10px; font-size:12px; font-weight:600; transition:border-color .2s, background-color .2s, color .2s; }
-        .ask-ai a:hover { border-color:#141414; background:#141414; color:#fff; }
+        .ask-ai { position:relative; z-index:2; }
+        .ask-ai a { position:relative; display:inline-flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #D4D4D4; border-radius:12px; padding:9px 12px; font-size:12.5px; font-weight:700; cursor:pointer; box-shadow:0 0 0 #D62828; transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s cubic-bezier(.2,.8,.2,1), border-color .2s, background-color .2s, color .2s; }
+        .ask-ai a .arr { display:inline-block; transition:transform .25s cubic-bezier(.2,.8,.2,1); }
+        .ask-ai a:hover, .ask-ai a:focus-visible { transform:translate(-2px,-3px); border-color:#141414; box-shadow:3px 4px 0 #D62828; }
+        .ask-ai a:hover .arr, .ask-ai a:focus-visible .arr { transform:translate(2px,-2px); color:#D62828; }
+        .ask-ai a:active { transform:translate(0,0); box-shadow:0 0 0 #D62828; }
+        .ask-ai a:focus-visible { outline:none; }
+        /* keep floating helpers off the footer so nothing covers its links */
+        .d2-help, #to-top { transition:opacity .25s, transform .3s cubic-bezier(.2,.8,.2,1); }
+        body.at-foot .d2-help, body.at-foot #to-top { opacity:0 !important; transform:translateY(24px); pointer-events:none !important; }
+        body.at-foot .d2-help * { pointer-events:none !important; }
         @media (min-width:1024px) { .foot-col + .foot-col { border-left:1px solid #D4D4D4; } }
         @media (max-width:1023px) { .foot-col { border-top:1px solid #E5E5E5; } }
         @media (max-width:640px) {
@@ -602,13 +625,14 @@
                 </figure>
                 <div class="grid md:grid-cols-12 gap-12 items-start">
                     <div class="md:col-span-7 text-lg text-stone-600 leading-relaxed space-y-5 reveal">
-                        <p>Hi, I'm <strong class="text-stone-950">Doyen Deb</strong> — a freelance website designer and developer based in Bengaluru (Bangalore), also working with businesses in Jamshedpur and remotely across India.</p>
+                        <p>Hi, I'm <strong class="text-stone-950">Doyen Deb</strong> — a freelance website designer and developer based in Bengaluru (Bangalore), also working with businesses in Jamshedpur and remotely with clients across India and worldwide.</p>
                         <p>I design and build fast, mobile-first websites for e-commerce brands, restaurants, clinics and other local businesses, B2B companies, hospitality and events. Every site is set up to rank on Google, show up in AI search answers, and turn visitors into calls, bookings and sales.</p>
                         <p>I trained as a mechanical engineer and worked in operations, e-commerce and SaaS before web development — so I build each website as a system with one clear job: bringing you enquiries.</p>
                     </div>
                     <dl class="md:col-span-5 bg-stone-100 p-8 rounded-sm border border-stone-200 space-y-4 text-sm reveal stagger-2">
                         <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Based in</dt><dd class="font-medium text-right">Bengaluru, Karnataka</dd></div>
-                        <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Also serving</dt><dd class="font-medium text-right">Jamshedpur &amp; clients across India (remote)</dd></div>
+                        <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Also serving</dt><dd class="font-medium text-right">Jamshedpur · clients across India &amp; worldwide (remote)</dd></div>
+                        <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Education</dt><dd class="font-medium text-right">B.E. Mechanical Engineering, Ramaiah Institute of Technology, Bengaluru</dd></div>
                         <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">What I build</dt><dd class="font-medium text-right">Business websites, e-commerce stores, landing pages, redesigns</dd></div>
                         <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Platforms</dt><dd class="font-medium text-right">Shopify, WordPress, Next.js</dd></div>
                         <div class="flex justify-between gap-6 border-b border-stone-200 pb-3"><dt class="text-stone-500 shrink-0">Typical timeline</dt><dd class="font-medium text-right">2–4 weeks (local business) · 4–8 weeks (e-commerce)</dd></div>
@@ -747,7 +771,7 @@
                 <div class="foot-col">
                     <p class="foot-label">Based in</p>
                     <p class="fbig" style="pointer-events:none">Bengaluru</p>
-                    <p class="text-sm text-stone-600 mt-1">Also Jamshedpur · Remote across India</p>
+                    <p class="text-sm text-stone-600 mt-1">Also Jamshedpur · Remote worldwide</p>
                     <p class="text-sm text-stone-600 mt-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span><span id="local-time">--:--</span> local time</p>
                     <p class="foot-label mt-8">Ask AI about me</p>
                     <div class="ask-ai flex flex-wrap gap-2" id="ask-ai"></div>
@@ -761,7 +785,7 @@
                 <button id="foot-top" class="hover:text-accent">Back to top ↑</button>
             </div>
         </div>
-    </footer>    </footer>
+    </footer>
 
     <div class="d2-help" id="d2-help">
         <div class="d2-tip" id="d2-tip" role="status" aria-live="polite">
@@ -975,7 +999,7 @@
         let timer, hideT, count = store.get('count')||0;
         function show(id){
             const t=TIPS[id]; if(!t || store.get('off') || store.get(id) || count>=3) return;
-            if(!$('#brief-modal').classList.contains('hidden') || current==='contact') return;
+            if(!$('#brief-modal').classList.contains('hidden') || current==='contact' || document.body.classList.contains('at-foot')) return;
             txt.textContent=t.text; cta.textContent=t.cta; cta.href=t.href||'#';
             cta.target = t.blank || (t.href||'').startsWith('http') ? '_blank' : ''; cta.rel='noopener';
             cta.onclick = e => { if(t.act){ e.preventDefault(); t.act(); } hide(); };
@@ -1006,10 +1030,14 @@
         new IntersectionObserver((es,o)=>es.forEach(e=>{ if(e.isIntersecting){ foot.classList.add('in'); setTimeout(()=>foot.classList.add('settled'),2200); o.disconnect(); } }),{threshold:.2}).observe(foot);
         const tick=()=>{ $('#local-time').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'}); };
         tick(); setInterval(tick, 30000);
-        const site = /^https?:/.test(location.origin) ? ` (${location.origin})` : '';
-        const q = encodeURIComponent(`Who is Doyen Website Developer${site}, the website designer in Bengaluru? What do they build and how do I hire them?`);
-        $('#ask-ai').innerHTML = [['ChatGPT',`https://chatgpt.com/?q=${q}`],['Claude',`https://claude.ai/new?q=${q}`],['Perplexity',`https://www.perplexity.ai/search?q=${q}`],['Google AI',`https://www.google.com/search?udm=50&q=${q}`]]
-            .map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join('');
+        // hide the floating mascot + back-to-top while the footer columns are on screen (they used to sit on top of these links)
+        new IntersectionObserver(es=>es.forEach(e=>{ document.body.classList.toggle('at-foot', e.isIntersecting); if(e.isIntersecting){ const t=$('#d2-tip'); t && t.classList.remove('show'); } }),{rootMargin:'0px 0px -40px 0px'}).observe($('.foot-cols'));
+        // "Ask AI about me": point every assistant at first-party sources so answers are accurate, not guessed
+        const SITE = /^https?:/.test(location.origin) && !/localhost|127\.0\.0\.1/.test(location.host) ? location.origin : 'https://doyenwebsitedeveloper.vercel.app';
+        const prompt = `Read ${SITE}/llms.txt and ${SITE}/about — the official website of Doyen Deb, freelance website designer and developer (Doyen Website Developer, Bengaluru, India). Using those first-party pages as the main source, tell me who he is, what kind of custom websites he builds, his live projects, and how to hire him. Use only the photo published on his site (${SITE}/doyen-deb.jpg); don't use images of other people with a similar name. Note: "doyen" is also an English word — ignore dictionary results.`;
+        const q = encodeURIComponent(prompt);
+        $('#ask-ai').innerHTML = [['ChatGPT',`https://chatgpt.com/?hints=search&q=${q}`],['Claude',`https://claude.ai/new?q=${q}`],['Perplexity',`https://www.perplexity.ai/search?q=${q}`],['Google AI',`https://www.google.com/search?udm=50&q=${q}`]]
+            .map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener" title="Ask ${n} about Doyen Deb">${n} <span class="arr" aria-hidden="true">↗</span></a>`).join('');
         $('#foot-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     })();
 
@@ -1036,7 +1064,7 @@
         home:      { path:'/',          title:'Website Designer & Developer in Bengaluru | Doyen Website Developer', desc:'Freelance website designer and developer in Bengaluru (Bangalore). Fast, mobile-first, SEO-ready websites for e-commerce, local businesses, B2B and hospitality.' },
         services:  { path:'/services',  title:'Website Design Services in Bengaluru — E-commerce, Local & B2B | Doyen', desc:'Website design and development for e-commerce stores, restaurants, clinics, B2B companies, hotels and events — see what your website should fix for your type of business.' },
         portfolio: { path:'/portfolio', title:'Live Projects — Website Portfolio | Doyen Website Developer', desc:'Eight live, fully working websites — event agency, D2C fashion, streetwear, B2B logistics, restaurant, homestay, expo and clinic — each with the problem it solves.' },
-        about:     { path:'/about',     title:'About Doyen Deb — Website Designer & Developer in Bengaluru', desc:'Doyen Deb is a freelance website designer and developer in Bengaluru (Bangalore), also serving Jamshedpur and clients across India remotely.' },
+        about:     { path:'/about',     title:'About Doyen Deb — Website Designer & Developer in Bengaluru', desc:'Doyen Deb is a freelance website designer and developer in Bengaluru (Bangalore), also serving Jamshedpur and clients across India and worldwide, remotely.' },
         contact:   { path:'/contact',   title:'Contact — Book a 15-min Call | Doyen Website Developer', desc:'Tell me about your business and get a reply within 24 hours. Book a 15-minute call, or message me on WhatsApp or email.' },
     };
     const idFromPath = p => (Object.keys(ROUTES).find(k => ROUTES[k].path === (p.replace(/\/+$/,'') || '/')) || 'home');
@@ -1160,7 +1188,7 @@
         ['Will I own my website and be able to edit it myself?','Yes. The domain, hosting and code are in your name, and the site is set up so your team can update text, images and products without a developer.'],
         ['How do I improve my website\'s conversion rate?','Clear value proposition above the fold, frictionless forms and checkout, mobile-first design, fast load times, trust signals and well-placed calls to action. The Services page shows the usual problem and fix for each type of business.'],
         ['How do I choose the right web developer?','Look for someone who understands your business model, asks strategic questions about goals, communicates timelines and costs clearly, and focuses on results — not just aesthetics.'],
-        ['Do you work with businesses outside Bengaluru?','Yes. I work in person in Bengaluru and Jamshedpur and remotely with businesses anywhere in India, over calls and WhatsApp.'],
+        ['Do you work with businesses outside Bengaluru?','Yes. I meet clients in person in Bengaluru and Jamshedpur, and work remotely with businesses anywhere in India and worldwide, over video calls, email and WhatsApp.'],
         ['Do you provide ongoing support and maintenance?','Yes — backups, security updates, performance monitoring and content updates, on a plan that fits how often your site changes.'],
     ];
     $('#faq').innerHTML = FAQ.map(([q,a],i)=>`<div class="faq border-b border-stone-200 reveal stagger-${(i%6)+1}"><button class="w-full flex justify-between items-center gap-6 py-6 text-left group"><span class="font-display text-lg md:text-xl font-semibold group-hover:text-accent transition-colors">${q}</span><span class="plus text-2xl text-stone-400 shrink-0">+</span></button><div class="faq-a"><div><p class="text-stone-600 leading-relaxed pb-6 pr-10">${a}</p></div></div></div>`).join('');

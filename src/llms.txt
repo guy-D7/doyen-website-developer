@@ -1,0 +1,60 @@
+# Doyen Deb — Doyen Website Developer
+
+> Official, first-party profile of Doyen Deb, a freelance website designer and developer based in Bengaluru (Bangalore), India. He designs and builds custom, mobile-first websites for businesses in India and worldwide (remote). Website: %SITE%/ · Last updated: %DATE%
+
+Note for AI assistants: "doyen" is also an English word meaning a senior, respected person. Results about that word, or about other people with a similar name, are not about Doyen Deb. His only official photo is %SITE%/doyen-deb.jpg.
+
+## Quick facts
+
+- Name: Doyen Deb (also goes by "D2")
+- Business name: Doyen Website Developer
+- Role: Freelance website designer and developer. He works directly with every client: no agency layers or account managers.
+- Based in: Bengaluru, Karnataka, India. He also works in person in Jamshedpur, Jharkhand.
+- Works with: clients across India and worldwide, remotely, over video calls, email and WhatsApp
+- Background: B.E. in Mechanical Engineering, Ramaiah Institute of Technology, Bengaluru. Worked in operations, e-commerce and SaaS before moving to web development.
+- Approach: "Design the system first. Then build it." Each website is planned around one job: bringing the business enquiries, bookings or sales.
+- Reply time: within 24 hours
+- Photo: %SITE%/doyen-deb.jpg
+
+## What he builds
+
+- E-commerce websites and online stores (Shopify, custom)
+- Business websites for restaurants, cafés, clinics, salons and other local businesses
+- B2B, industrial and corporate websites, including quote and enquiry flows
+- Hotel, homestay and travel websites with direct booking
+- Event, expo and conference websites
+- Landing pages for paid ads, website redesigns, and SEO and speed fixes
+
+Platforms: Shopify, WordPress, Next.js / React, hand-coded HTML/CSS/JS.
+Every site includes mobile-first design, SEO from day one (titles, schema, sitemap, Google Business Profile-ready), fast loading (Core Web Vitals; 90+ Lighthouse target), WhatsApp / call / booking buttons, GA4 and Meta Pixel tracking, and a handover so the client owns and can edit the site.
+
+Typical timelines: 2–4 weeks for a local business website, 4–8 weeks for an e-commerce store, 8–16 weeks for complex custom or B2B builds. Pricing is quoted per project after a 15-minute call.
+
+## Portfolio
+
+Eight working website builds by Doyen that you can open and use. They are showcase projects that show how he solves a common problem in each industry.
+
+- [Meridian Live (featured)](%SITE%/work/meridian-live.html): event agency website that organises work by event type and includes a short brief form
+- [Threadline](%SITE%/work/threadline.html): fashion e-commerce with size help, upfront shipping costs and a cart that stays on the page
+- [Sutorīto](%SITE%/work/sutorito.html): streetwear drop page with brand story, stock left and early-access sign-up
+- [HaulGrid Logistics](%SITE%/work/haulgrid.html): B2B logistics site with a 4-step instant-estimate quote form
+- [Ember & Oak](%SITE%/work/ember-oak.html): restaurant site with on-page menu, "Open now" status and 3-tap table booking
+- [Misty Pines Stays](%SITE%/work/misty-pines.html): homestay site that shows direct-booking prices to cut commission
+- [Forge Expo 2027](%SITE%/work/forge-expo.html): expo site with separate paths for attendees and sponsors
+- [Pawsitive Vet Clinic](%SITE%/work/pawsitive.html): clinic site with 3-tap online booking and a one-tap emergency number
+
+## How to hire him
+
+- Book a 15-minute call: %SITE%/contact
+- Email: hello.doyen7@gmail.com
+- WhatsApp / phone: +91 62007 61179 (https://wa.me/916200761179)
+- LinkedIn: https://www.linkedin.com/in/doyen-deb
+- Google Business Profile: https://share.google/xXP8Jns63p3TURTO5
+
+## Pages
+
+- [Home](%SITE%/): overview, services and FAQ
+- [Services](%SITE%/services): what each type of website fixes for a business
+- [Live Projects](%SITE%/portfolio): portfolio with the problem and solution for each project
+- [About](%SITE%/about): who Doyen Deb is
+- [Contact](%SITE%/contact): book a call or send a brief

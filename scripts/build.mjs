@@ -28,8 +28,8 @@ const ROUTES = {
                desc: 'Eight live, fully working websites — event agency, D2C fashion, streetwear, B2B logistics, restaurant, homestay, expo and clinic — each with the problem it solves.',
                h1: 'Live Projects: Websites That Solve Real Problems' },
   about:     { path: '/about',     title: 'About Doyen Deb — Website Designer &amp; Developer in Bengaluru',
-               desc: 'Doyen Deb is a freelance website designer and developer in Bengaluru (Bangalore), also serving Jamshedpur and clients across India remotely.',
-               h1: 'Website Designer &amp; Developer in Bengaluru' },
+               desc: 'Doyen Deb is a freelance website designer and developer in Bengaluru (Bangalore), also serving Jamshedpur and clients across India and worldwide, remotely.',
+               h1: 'Website Designer &amp; Developer in Bengaluru', image: '/doyen-deb.jpg', profile: true },
   contact:   { path: '/contact',   title: 'Contact — Book a 15-min Call | Doyen Website Developer',
                desc: 'Tell me about your business and get a reply within 24 hours. Book a 15-minute call, or message me on WhatsApp or email.',
                h1: 'Start a Conversation' },
@@ -48,6 +48,11 @@ for (const [id, r] of Object.entries(ROUTES)) {
     .replace(/(<meta property="og:description" content=")[^"]*/, `$1${r.desc}`)
     .replace(/(<meta property="og:url" content=")[^"]*/, `$1${url}`)
     .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
+    // a page can share its own image (About shares Doyen's photo, so previews and AI answers show the right face)
+    .replace(/(<meta (?:property|name)="(?:og|twitter):image" content=")[^"]*/g, m => r.image ? m.replace(/content="[^"]*/, `content="${SITE}${r.image}`) : m)
+    .replace(/(<meta property="og:image:width" content=")[^"]*/, m => r.image ? m.replace(/content="[^"]*/, 'content="600') : m)
+    .replace(/(<meta property="og:image:height" content=")[^"]*/, m => r.image ? m.replace(/content="[^"]*/, 'content="600') : m)
+    .replace(/(<meta property="og:image:alt" content=")[^"]*/, m => r.image ? m.replace(/content="[^"]*/, 'content="Doyen Deb, freelance website designer and developer in Bengaluru') : m)
     // this URL's section is the visible one in the raw HTML
     .replace('<section id="page-home" class="page active">', '<section id="page-home" class="page">')
     .replace(`<section id="page-${id}" class="page">`, `<section id="page-${id}" class="page active">`)
@@ -61,6 +66,9 @@ for (const [id, r] of Object.entries(ROUTES)) {
   html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (m, a, json, b) => {
     const data = JSON.parse(json);
     data['@graph'] = data['@graph'].filter(n => n['@type'] !== 'FAQPage');
+    // About is Doyen's profile page: tell crawlers the page is about the Person node
+    if (r.profile) data['@graph'].push({ '@type': 'ProfilePage', '@id': `${url}#profile`, url, name: r.title.replace(/&amp;/g, '&'),
+      mainEntity: { '@id': `${SITE}/#doyen` }, primaryImageOfPage: { '@id': `${SITE}/#doyen-photo` }, dateModified: today });
     return `${a}\n${JSON.stringify(data, null, 2)}\n    ${b}`;
   });
   mkdirSync(`public${r.path}`, { recursive: true });
@@ -78,5 +86,7 @@ User-agent: *
 Allow: /
 
 Sitemap: ${SITE}/sitemap.xml
+# Profile for AI assistants: ${SITE}/llms.txt
 `);
+writeFileSync('public/llms.txt', readFileSync('src/llms.txt', 'utf8').replaceAll('%SITE%', SITE).replaceAll('%DATE%', today));
 console.log(`build: ${Object.keys(ROUTES).length} pages for ${SITE}`);
