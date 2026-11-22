@@ -263,8 +263,8 @@
         /* ---------- Footer: SAY HELLO ---------- */
         .site-foot { background:#fff; color:#141414; border-top:2px solid #141414; }
         .say-wrap { position:relative; padding:84px 0 40px; }
-        .say { display:block; color:#141414; text-decoration:none; line-height:.78; }
-        .say-inner { display:inline-flex; white-space:nowrap; overflow:hidden; padding:.04em 0 .02em; font-family:'Archivo',sans-serif; font-stretch:62.5%; font-weight:900; text-transform:uppercase; letter-spacing:-.01em; }
+        .say { display:block; color:#141414; text-decoration:none; line-height:.78; overflow:hidden; container-type:inline-size; }
+        .say-inner { display:inline-flex; white-space:nowrap; overflow:hidden; font-size:24.5cqw; padding:.04em 0 .02em; font-family:'Archivo',sans-serif; font-stretch:62.5%; font-weight:900; text-transform:uppercase; letter-spacing:-.01em; }
         .say .ch { display:inline-block; text-align:center; transform:translateY(105%); transition:transform .9s var(--e) var(--d,0s), font-weight .45s var(--e), color .3s; }
         .say .sp { display:inline-block; width:.18em; }
         .site-foot.in .say .ch { transform:none; }
@@ -314,7 +314,7 @@
             .stk-me { top:12px !important; width:58px; } .stk-me .face { border-width:2px; box-shadow:3px 3px 0 #D62828; } .stk-me .hey { font-size:11px; left:-70%; }
             .stk-star { display:none; }
         }
-        @media (prefers-reduced-motion: reduce) { .say .ch, .stk { transform:none !important; } .stk-star svg { animation:none; } }
+        @media (prefers-reduced-motion: reduce) { .stk-star svg { animation:none; } }
 
         /* About: photo + mascot */
         .me-card { position:relative; }
@@ -334,12 +334,9 @@
         ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:#fff; } ::-webkit-scrollbar-thumb { background:#D4D4D4; border-radius:4px; }
         .text-balance { text-wrap:balance; }
 
-        @media (prefers-reduced-motion: reduce) {
-            *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-            .reveal,.reveal-left,.reveal-scale { opacity:1; transform:none; }
-            .w > span, .hero-mascot, .hero-bubble { transform:none !important; opacity:1 !important; }
-            .draw * { stroke-dashoffset:0 !important; }
-        }
+        /* Same motion on every device (phones with "remove animations" used to get a broken, different layout).
+           Only the endless decorative loop stops for people who ask for less motion. */
+        html { overflow-x:clip; }
     </style>
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
@@ -900,7 +897,7 @@
 
     const $ = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => [...r.querySelectorAll(s)];
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = false;   // site owner's choice: identical motion on desktop and mobile, whatever the OS animation setting
     const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
     const WA = '916200761179';
     const EMAIL = 'hello.doyen7@gmail.com';
@@ -1018,11 +1015,15 @@
         const foot=$('#site-foot'), wrap=$('#say'), inner=$('#say-inner'), chars=$$('#say-inner .ch');
         chars.forEach((c,i)=>c.style.setProperty('--d', (i*0.06)+'s'));
         function fit(){
+            const W = wrap.clientWidth; if (!W) return;
             chars.forEach(c=>c.style.width='');
-            inner.style.fontSize='100px';
-            const fs = 100 * wrap.clientWidth / inner.scrollWidth;
+            inner.style.transition='none'; inner.style.fontSize='100px';
+            const natural = inner.scrollWidth; if (!natural) return;
+            const fs = 100 * W / natural;
+            // lock each letter's bold width in em (so it scales with the font) — thinning on hover never shifts its neighbours
+            const ems = chars.map(c=>c.getBoundingClientRect().width / 100);
             inner.style.fontSize = fs.toFixed(2)+'px';
-            chars.forEach(c=>c.style.width=c.getBoundingClientRect().width+'px');   // lock each letter's bold width so thinning on hover never shifts its neighbours
+            chars.forEach((c,i)=>c.style.width = ems[i].toFixed(4)+'em');
         }
         // refit whenever the column's width actually changes (late CSS, font swap, resize, rotation)
         let lastW = 0; new ResizeObserver(()=>{ if (wrap.clientWidth !== lastW) { lastW = wrap.clientWidth; fit(); } }).observe(wrap);
@@ -1226,8 +1227,11 @@
           </div>`;
         panel.animate([{opacity:0},{opacity:1}],{duration:250});
     }
-    $$('#svc-tabs .chip').forEach(b=>b.addEventListener('click',()=>{ $$('#svc-tabs .chip').forEach(x=>x.classList.remove('on')); b.classList.add('on'); renderSvc(+b.dataset.i); }));
+    $$('#svc-tabs .chip').forEach(b=>b.addEventListener('click',()=>{ $$('#svc-tabs .chip').forEach(x=>x.classList.remove('on')); b.classList.add('on'); renderSvc(+b.dataset.i); bringIntoView($('#svc-panel')); }));
     renderSvc(0);
+
+    // phones: the answer renders below the buttons, so glide to it (on desktop it sits beside them and is already visible)
+    function bringIntoView(el){ if (innerWidth >= 1024 || !el) return; const t = el.getBoundingClientRect().top; if (t > innerHeight * .55 || t < 70) scrollTo({ top: scrollY + t - 90, behavior:'smooth' }); }
 
     /* ---------- WHAT WILL YOUR WEBSITE FIX? ---------- */
     const fixRow = f => { const [worry, fix] = f.split(' → '); return `<li class="py-4 border-b border-stone-800 last:border-0"><p class="text-stone-400 text-sm">${worry}</p><p class="font-medium mt-1"><span class="text-accent mr-2">→</span>${fix}</p></li>`; };
@@ -1255,7 +1259,7 @@
           </div>`;
         $('#fx-panel').animate([{opacity:0},{opacity:1}],{duration:200});
     }
-    $$('.fx-tab').forEach(b=>b.addEventListener('click',()=>{ $$('.fx-tab').forEach(x=>{ x.classList.remove('on'); x.setAttribute('aria-selected','false'); }); b.classList.add('on'); b.setAttribute('aria-selected','true'); renderFix(+b.dataset.i); }));
+    $$('.fx-tab').forEach(b=>b.addEventListener('click',()=>{ $$('.fx-tab').forEach(x=>{ x.classList.remove('on'); x.setAttribute('aria-selected','false'); }); b.classList.add('on'); b.setAttribute('aria-selected','true'); renderFix(+b.dataset.i); bringIntoView($('#fx-panel')); }));
     renderFix(0);
 
     /* ---------- PORTFOLIO ---------- */
