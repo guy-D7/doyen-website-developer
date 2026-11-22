@@ -1124,16 +1124,19 @@
     const FEAT = PROJECTS.find(p=>p.featured);
     $('#work-feature').innerHTML = `
       <a href="${FEAT.url}" target="_blank" rel="noopener" data-thumb="" class="feature group relative block overflow-hidden bg-stone-950 text-white border-2 border-stone-950">
-        <img src="${FEAT.thumb}" alt="${FEAT.name} website" class="w-full h-[440px] md:h-[540px] object-cover opacity-80" loading="lazy">
-        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(20,20,20,.95) 10%,rgba(20,20,20,.35) 55%,rgba(20,20,20,0))"></div>
-        <div class="absolute top-0 left-0 flex"><span class="bg-accent px-3 py-1.5 text-xs font-bold uppercase tracking-wider">Featured project</span><span class="bg-stone-950 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">01 · ${FEAT.tag}</span></div>
-        <div class="absolute left-0 right-0 bottom-0 p-6 md:p-10 grid md:grid-cols-12 gap-6 items-end">
-          <div class="md:col-span-8">
-            <h3 class="font-display text-5xl md:text-8xl font-extrabold tracking-tight leading-none">${FEAT.name}</h3>
-            <p class="mt-4 text-lg md:text-xl text-white/85 max-w-2xl"><span class="text-white/60">Problem:</span> ${FEAT.problem}</p>
-            <p class="mt-2 text-lg md:text-xl max-w-2xl"><span class="text-accent font-semibold">Fix:</span> ${FEAT.solution}</p>
+        <img src="${FEAT.thumb}" alt="${FEAT.name} website" class="absolute inset-0 w-full h-full object-cover opacity-80" loading="lazy">
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(20,20,20,.95) 10%,rgba(20,20,20,.55) 55%,rgba(20,20,20,.15))"></div>
+        <div class="absolute top-0 left-0 right-0 z-10 flex flex-wrap"><span class="bg-accent px-3 py-1.5 text-[11px] md:text-xs font-bold uppercase tracking-wider whitespace-nowrap">Featured project</span><span class="bg-stone-950 px-3 py-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-wider whitespace-nowrap">01 · ${FEAT.tag}</span></div>
+        <!-- content sits in normal flow (not absolute) so it can never grow up over the labels on narrow screens -->
+        <div class="relative min-h-[440px] md:min-h-[540px] flex flex-col justify-end px-6 pb-6 pt-24 md:p-10 md:pt-28">
+          <div class="grid md:grid-cols-12 gap-6 items-end">
+            <div class="md:col-span-8">
+              <h3 class="font-display text-[44px] md:text-8xl font-extrabold tracking-tight leading-[.95] md:leading-none">${FEAT.name}</h3>
+              <p class="mt-4 text-base md:text-xl text-white/85 max-w-2xl"><span class="text-white/60">Problem:</span> ${FEAT.problem}</p>
+              <p class="mt-2 text-base md:text-xl max-w-2xl"><span class="text-accent font-semibold">Fix:</span> ${FEAT.solution}</p>
+            </div>
+            <div class="md:col-span-4 md:text-right"><span class="f-cta inline-flex items-center gap-2 bg-accent px-6 py-4 font-semibold">Visit live site ↗</span></div>
           </div>
-          <div class="md:col-span-4 md:text-right"><span class="f-cta inline-flex items-center gap-2 bg-accent px-6 py-4 font-semibold">Visit live site ↗</span></div>
         </div>
       </a>`;
     $('#work-list').innerHTML = PROJECTS.filter(p=>!p.featured).map((p,i)=>`
